@@ -1,12 +1,15 @@
 /* ══════════════════════════════════════════
    Salt Development — Home Page
-   Bricks Builder CSS
-   Paste this into Bricks > Global CSS
+   Bricks Builder CSS — with native dark mode
+   Paste into Bricks > Global CSS
    ══════════════════════════════════════════ */
 
-/* ── Design tokens (become Bricks Global Variables on paste) ── */
+/* ── Raw palette + structural tokens ──────────────────────────
+   These are fixed and never change between modes.
+   Intentional dark sections (hero, cta-mid, cta-bottom) use
+   these directly so they stay black in both light and dark mode.
+   ─────────────────────────────────────────────────────────── */
 :root {
-  /* Color — neutral scale */
   --black:  #111111;
   --white:  #FFFFFF;
   --g25:    #FAFAFA;
@@ -21,19 +24,12 @@
   --g800:   #2A2A2A;
   --g900:   #1A1A1A;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.07);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.10);
-
-  /* Corner radii */
   --radius-sm:   6px;
   --radius-md:   12px;
   --radius-lg:   20px;
   --radius-xl:   32px;
   --radius-full: 9999px;
 
-  /* Spacing (8px base unit) */
   --space-1:  4px;
   --space-2:  8px;
   --space-3:  12px;
@@ -46,14 +42,91 @@
   --space-16: 64px;
   --space-20: 80px;
   --space-24: 96px;
+
+  /* ── Semantic color tokens — LIGHT MODE defaults ────────────
+     Only these flip in dark mode. Every component rule below
+     references these, never a raw palette token directly.
+     ─────────────────────────────────────────────────────────── */
+
+  /* Backgrounds */
+  --bg-base:    var(--white);   /* main section bg          */
+  --bg-subtle:  var(--g50);    /* alternate section bg     */
+  --bg-card:    var(--white);   /* cards, form inputs       */
+
+  /* Foregrounds */
+  --fg-primary: var(--black);   /* headings, strong text    */
+  --fg-body:    var(--g700);   /* body paragraphs          */
+  --fg-muted:   var(--g600);   /* supporting text          */
+  --fg-faint:   var(--g500);   /* labels, captions, meta   */
+  --fg-dim:     var(--g400);   /* indicators, placeholders */
+
+  /* Borders */
+  --bd-base:        var(--g200);  /* card borders, dividers   */
+  --bd-subtle:      var(--g100);  /* inner / lighter dividers */
+  --bd-interactive: var(--g300);  /* button outlines          */
+
+  /* Shadows — adjusted per mode */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.07);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.10);
 }
 
-/* ── Base reset helpers ── */
+/* ── DARK MODE: system preference ─────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-base:    #1C1C1C;
+    --bg-subtle:  #141414;
+    --bg-card:    #252525;
+
+    --fg-primary: var(--white);
+    --fg-body:    var(--g300);
+    --fg-muted:   var(--g400);
+    --fg-faint:   var(--g500);
+    --fg-dim:     #777777;
+
+    --bd-base:        #2A2A2A;
+    --bd-subtle:      #1E1E1E;
+    --bd-interactive: #555555;
+
+    --shadow-sm: 0 1px 3px  rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.55);
+  }
+}
+
+/* ── DARK MODE: Bricks manual toggle ─────────────────────────
+   Bricks dark mode widget adds one of these classes to <html>.
+   Duplicate the same overrides so manual toggle matches system.
+   ─────────────────────────────────────────────────────────── */
+html.dark-mode,
+html.dark,
+html[data-bricks-theme="dark"] {
+  --bg-base:    #1C1C1C;
+  --bg-subtle:  #141414;
+  --bg-card:    #252525;
+
+  --fg-primary: var(--white);
+  --fg-body:    var(--g300);
+  --fg-muted:   var(--g400);
+  --fg-faint:   var(--g500);
+  --fg-dim:     #777777;
+
+  --bd-base:        #2A2A2A;
+  --bd-subtle:      #1E1E1E;
+  --bd-interactive: #555555;
+
+  --shadow-sm: 0 1px 3px  rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.55);
+}
+
+/* ════════════════════════════════
+   BASE
+   ════════════════════════════════ */
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
-/* ── Layout container ── */
 .container {
   max-width: 1200px;
   margin-left: auto;
@@ -62,21 +135,19 @@
   padding-right: var(--space-8);
 }
 
-/* ── Shared section label ── */
 .section-label {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--g500);
+  color: var(--fg-faint);
   margin-bottom: var(--space-6);
 }
 
-/* ── Shared section intro ── */
 .section-intro {
   font-size: 18px;
   font-weight: 400;
-  color: var(--g700);
+  color: var(--fg-body);
   line-height: 1.65;
   max-width: 680px;
   margin-bottom: var(--space-10);
@@ -102,10 +173,10 @@
   white-space: nowrap;
 }
 
-/* Primary — black on white sections */
+/* Primary — auto-inverts: black on light, white on dark */
 .button--primary {
-  background-color: var(--black);
-  color: var(--white);
+  background-color: var(--fg-primary);
+  color: var(--bg-base);
   padding-top: 12px;
   padding-right: 24px;
   padding-bottom: 12px;
@@ -118,23 +189,23 @@
   opacity: 0.8;
 }
 
-/* Secondary — outlined on white sections */
+/* Secondary — outlined, adapts to mode */
 .button--secondary {
   background-color: transparent;
-  color: var(--black);
+  color: var(--fg-primary);
   padding-top: 11px;
   padding-right: 24px;
   padding-bottom: 11px;
   padding-left: 24px;
   border-width: 1.5px;
   border-style: solid;
-  border-color: var(--g300);
+  border-color: var(--bd-interactive);
 }
 .button--secondary:hover {
-  border-color: var(--black);
+  border-color: var(--fg-primary);
 }
 
-/* Inverse primary — white on dark sections */
+/* Inverse primary — white bg for intentional dark sections */
 .button--inverse-primary {
   background-color: var(--white);
   color: var(--black);
@@ -150,7 +221,7 @@
   opacity: 0.9;
 }
 
-/* Inverse secondary — ghost on dark sections */
+/* Inverse secondary — ghost for intentional dark sections */
 .button--inverse-secondary {
   background-color: transparent;
   color: var(--g400);
@@ -169,6 +240,7 @@
 
 /* ════════════════════════════════
    SECTION 1 — HERO
+   Intentional dark: uses raw palette.
    ════════════════════════════════ */
 .hero {
   background-color: var(--black);
@@ -234,7 +306,7 @@
    SECTION 2 — IDEAL CUSTOMERS
    ════════════════════════════════ */
 .ideal {
-  background-color: var(--white);
+  background-color: var(--bg-base);
   padding-top: var(--space-24);
   padding-bottom: var(--space-24);
 }
@@ -250,7 +322,7 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 1.7;
-  color: var(--g700);
+  color: var(--fg-body);
   margin-bottom: var(--space-5);
 }
 
@@ -259,7 +331,7 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--g400);
+  color: var(--fg-dim);
   margin-bottom: var(--space-4);
 }
 
@@ -272,30 +344,30 @@
 .ideal__industry {
   font-size: 15px;
   font-weight: 500;
-  color: var(--black);
+  color: var(--fg-primary);
   padding-top: var(--space-3);
   padding-bottom: var(--space-3);
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: var(--g100);
+  border-bottom-color: var(--bd-subtle);
 }
 
 .ideal__disqualifier {
   font-size: 15px;
   font-weight: 600;
   line-height: 1.6;
-  color: var(--black);
+  color: var(--fg-primary);
   padding-top: var(--space-5);
   border-top-width: 1.5px;
   border-top-style: solid;
-  border-top-color: var(--g200);
+  border-top-color: var(--bd-base);
 }
 
 /* ════════════════════════════════
    SECTION 3 — SERVICES
    ════════════════════════════════ */
 .services {
-  background-color: var(--g50);
+  background-color: var(--bg-subtle);
   padding-top: var(--space-24);
   padding-bottom: var(--space-24);
 }
@@ -307,10 +379,10 @@
 }
 
 .service-card {
-  background-color: var(--white);
+  background-color: var(--bg-card);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--g200);
+  border-color: var(--bd-base);
   border-radius: var(--radius-lg);
   padding-top: var(--space-8);
   padding-right: var(--space-8);
@@ -332,7 +404,7 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--g400);
+  color: var(--fg-dim);
   margin-bottom: var(--space-4);
 }
 
@@ -341,7 +413,7 @@
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.25;
-  color: var(--black);
+  color: var(--fg-primary);
   margin-bottom: var(--space-4);
 }
 
@@ -349,25 +421,25 @@
   font-size: 15px;
   font-weight: 400;
   line-height: 1.7;
-  color: var(--g600);
+  color: var(--fg-muted);
   margin-bottom: var(--space-6);
 }
 
 .service-card__price {
   font-size: 14px;
   font-weight: 600;
-  color: var(--black);
+  color: var(--fg-primary);
   padding-top: var(--space-5);
   border-top-width: 1px;
   border-top-style: solid;
-  border-top-color: var(--g200);
+  border-top-color: var(--bd-base);
 }
 
 /* ════════════════════════════════
    SECTION 4 — PROCESS
    ════════════════════════════════ */
 .process {
-  background-color: var(--white);
+  background-color: var(--bg-base);
   padding-top: var(--space-24);
   padding-bottom: var(--space-24);
 }
@@ -382,7 +454,7 @@
   padding-top: var(--space-6);
   border-top-width: 1.5px;
   border-top-style: solid;
-  border-top-color: var(--g200);
+  border-top-color: var(--bd-base);
 }
 
 .process-step__num {
@@ -391,7 +463,7 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--g400);
+  color: var(--fg-dim);
   margin-bottom: var(--space-4);
 }
 
@@ -400,7 +472,7 @@
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.3;
-  color: var(--black);
+  color: var(--fg-primary);
   margin-bottom: var(--space-3);
 }
 
@@ -408,14 +480,14 @@
   font-size: 15px;
   font-weight: 400;
   line-height: 1.7;
-  color: var(--g600);
+  color: var(--fg-muted);
 }
 
 /* ════════════════════════════════
    SECTION 5 — OWNER QUOTE
    ════════════════════════════════ */
 .quote-section {
-  background-color: var(--g50);
+  background-color: var(--bg-subtle);
   padding-top: var(--space-24);
   padding-bottom: var(--space-24);
 }
@@ -427,7 +499,7 @@
   padding-left: var(--space-10);
   border-left-width: 3px;
   border-left-style: solid;
-  border-left-color: var(--g200);
+  border-left-color: var(--bd-base);
 }
 
 .quote-block__text {
@@ -435,21 +507,21 @@
   font-weight: 300;
   letter-spacing: -0.02em;
   line-height: 1.45;
-  color: var(--black);
+  color: var(--fg-primary);
   margin-bottom: var(--space-6);
 }
 
 .quote-block__attr {
   font-size: 14px;
   font-weight: 600;
-  color: var(--g500);
+  color: var(--fg-faint);
 }
 
 /* ════════════════════════════════
    SECTION 6 — PRICING
    ════════════════════════════════ */
 .pricing {
-  background-color: var(--white);
+  background-color: var(--bg-base);
   padding-top: var(--space-24);
   padding-bottom: var(--space-24);
 }
@@ -462,10 +534,10 @@
 }
 
 .pricing-card {
-  background-color: var(--white);
+  background-color: var(--bg-card);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--g200);
+  border-color: var(--bd-base);
   border-radius: var(--radius-lg);
   padding-top: var(--space-8);
   padding-right: var(--space-8);
@@ -484,8 +556,9 @@
   transform: translateY(-2px);
 }
 
+/* Featured card: border uses fg-primary so it's black in light, white in dark */
 .pricing-card--featured {
-  border-color: var(--black);
+  border-color: var(--fg-primary);
   box-shadow: var(--shadow-md);
 }
 
@@ -493,7 +566,7 @@
   font-size: 16px;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: var(--black);
+  color: var(--fg-primary);
 }
 
 .pricing-card__price {
@@ -501,36 +574,36 @@
   font-weight: 300;
   letter-spacing: -0.02em;
   line-height: 1;
-  color: var(--black);
+  color: var(--fg-primary);
 }
 
 .pricing-card__period {
   font-size: 16px;
   font-weight: 400;
-  color: var(--g500);
+  color: var(--fg-faint);
 }
 
 .pricing-card__desc {
   font-size: 14px;
   font-weight: 400;
   line-height: 1.6;
-  color: var(--g600);
+  color: var(--fg-muted);
   flex-grow: 1;
   padding-bottom: var(--space-5);
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: var(--g100);
+  border-bottom-color: var(--bd-subtle);
 }
 
 .pricing__closing {
   font-size: 15px;
   font-weight: 400;
-  color: var(--g600);
+  color: var(--fg-muted);
   line-height: 1.6;
 }
 
 .pricing__cta-link {
-  color: var(--black);
+  color: var(--fg-primary);
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -543,7 +616,7 @@
    SECTION 7 — CONTACT
    ════════════════════════════════ */
 .contact {
-  background-color: var(--g50);
+  background-color: var(--bg-subtle);
   padding-top: var(--space-24);
   padding-bottom: var(--space-24);
 }
@@ -559,7 +632,7 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 1.7;
-  color: var(--g700);
+  color: var(--fg-body);
   margin-bottom: var(--space-6);
 }
 
@@ -567,18 +640,18 @@
   display: inline-block;
   font-size: 16px;
   font-weight: 600;
-  color: var(--black);
+  color: var(--fg-primary);
   text-decoration: none;
   border-bottom-width: 1.5px;
   border-bottom-style: solid;
-  border-bottom-color: var(--g300);
+  border-bottom-color: var(--bd-interactive);
   padding-bottom: var(--space-1);
   transition-property: border-color;
   transition-duration: 200ms;
   transition-timing-function: ease;
 }
 .contact__email:hover {
-  border-bottom-color: var(--black);
+  border-bottom-color: var(--fg-primary);
 }
 
 .contact__form {
@@ -597,18 +670,18 @@
   display: block;
   font-size: 12px;
   font-weight: 600;
-  color: var(--black);
+  color: var(--fg-primary);
 }
 
 .form-field__input {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   font-weight: 400;
-  color: var(--black);
-  background-color: var(--white);
+  color: var(--fg-primary);
+  background-color: var(--bg-card);
   border-width: 1.5px;
   border-style: solid;
-  border-color: var(--g200);
+  border-color: var(--bd-base);
   border-radius: var(--radius-md);
   padding-top: 11px;
   padding-right: 14px;
@@ -621,10 +694,10 @@
   transition-timing-function: ease;
 }
 .form-field__input:focus {
-  border-color: var(--black);
+  border-color: var(--fg-primary);
 }
 .form-field__input::placeholder {
-  color: var(--g400);
+  color: var(--fg-dim);
 }
 
 .form-field__input--textarea {
@@ -638,8 +711,8 @@
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   font-weight: 600;
-  color: var(--white);
-  background-color: var(--black);
+  color: var(--bg-base);
+  background-color: var(--fg-primary);
   border-width: 0;
   border-style: solid;
   border-color: transparent;
@@ -660,6 +733,7 @@
 
 /* ════════════════════════════════
    SECTION 8 — MID-PAGE CTA
+   Intentional dark: uses raw palette.
    ════════════════════════════════ */
 .cta-mid {
   background-color: var(--black);
@@ -713,7 +787,7 @@
    SECTION 9 — QUESTIONS
    ════════════════════════════════ */
 .questions {
-  background-color: var(--white);
+  background-color: var(--bg-base);
   padding-top: var(--space-24);
   padding-bottom: var(--space-24);
 }
@@ -732,7 +806,7 @@
   padding-bottom: var(--space-8);
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: var(--g200);
+  border-bottom-color: var(--bd-base);
 }
 
 .question-item__q {
@@ -740,21 +814,21 @@
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.35;
-  color: var(--black);
+  color: var(--fg-primary);
 }
 
 .question-item__a {
   font-size: 15px;
   font-weight: 400;
   line-height: 1.7;
-  color: var(--g600);
+  color: var(--fg-muted);
 }
 
 /* ════════════════════════════════
    SECTION 10 — TESTIMONIALS
    ════════════════════════════════ */
 .testimonials {
-  background-color: var(--g50);
+  background-color: var(--bg-subtle);
   padding-top: var(--space-24);
   padding-bottom: var(--space-24);
 }
@@ -766,10 +840,10 @@
 }
 
 .testimonial-card {
-  background-color: var(--white);
+  background-color: var(--bg-card);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--g200);
+  border-color: var(--bd-base);
   border-radius: var(--radius-lg);
   padding-top: var(--space-8);
   padding-right: var(--space-8);
@@ -783,7 +857,7 @@
 .testimonial-card__mark {
   font-size: 52px;
   font-weight: 300;
-  color: var(--g200);
+  color: var(--fg-dim);
   line-height: 1;
   margin-bottom: var(--space-3);
 }
@@ -793,7 +867,7 @@
   font-weight: 400;
   font-style: italic;
   line-height: 1.7;
-  color: var(--g700);
+  color: var(--fg-body);
   flex-grow: 1;
   margin-bottom: var(--space-6);
 }
@@ -805,26 +879,26 @@
   padding-top: var(--space-5);
   border-top-width: 1px;
   border-top-style: solid;
-  border-top-color: var(--g100);
+  border-top-color: var(--bd-subtle);
 }
 
 .testimonial-card__name {
   font-size: 13px;
   font-weight: 700;
-  color: var(--black);
+  color: var(--fg-primary);
 }
 
 .testimonial-card__biz {
   font-size: 12px;
   font-weight: 400;
-  color: var(--g500);
+  color: var(--fg-faint);
 }
 
 /* ════════════════════════════════
    SECTION 11 — FAQ
    ════════════════════════════════ */
 .faq {
-  background-color: var(--white);
+  background-color: var(--bg-base);
   padding-top: var(--space-24);
   padding-bottom: var(--space-24);
 }
@@ -838,10 +912,9 @@
 .faq-item {
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: var(--g200);
+  border-bottom-color: var(--bd-base);
 }
 
-/* <details> reset */
 .faq-details {
   border-top-width: 0;
   border-right-width: 0;
@@ -849,7 +922,6 @@
   border-left-width: 0;
 }
 
-/* <summary> row */
 .faq-details__summary {
   display: flex;
   align-items: center;
@@ -865,13 +937,12 @@
   display: none;
 }
 
-/* + / − indicator */
 .faq-details__summary::after {
   content: '+';
   font-size: 22px;
   font-weight: 300;
   line-height: 1;
-  color: var(--g400);
+  color: var(--fg-dim);
   flex-shrink: 0;
   transition-property: color;
   transition-duration: 200ms;
@@ -879,7 +950,7 @@
 }
 .faq-details[open] > .faq-details__summary::after {
   content: '\2212';
-  color: var(--black);
+  color: var(--fg-primary);
 }
 
 .faq-details__q {
@@ -887,7 +958,7 @@
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.4;
-  color: var(--black);
+  color: var(--fg-primary);
 }
 
 .faq-details__body {
@@ -898,14 +969,14 @@
   font-size: 15px;
   font-weight: 400;
   line-height: 1.7;
-  color: var(--g600);
+  color: var(--fg-muted);
 }
 
 /* ════════════════════════════════
    SECTION 12 — RESOURCES
    ════════════════════════════════ */
 .resources {
-  background-color: var(--g50);
+  background-color: var(--bg-subtle);
   padding-top: var(--space-24);
   padding-bottom: var(--space-24);
 }
@@ -917,10 +988,10 @@
 }
 
 .resource-card {
-  background-color: var(--white);
+  background-color: var(--bg-card);
   border-width: 1px;
   border-style: solid;
-  border-color: var(--g200);
+  border-color: var(--bd-base);
   border-radius: var(--radius-lg);
   padding-top: var(--space-8);
   padding-right: var(--space-8);
@@ -944,21 +1015,21 @@
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.3;
-  color: var(--black);
+  color: var(--fg-primary);
 }
 
 .resource-card__desc {
   font-size: 14px;
   font-weight: 400;
   line-height: 1.65;
-  color: var(--g600);
+  color: var(--fg-muted);
   flex-grow: 1;
 }
 
 .resource-card__link {
   font-size: 13px;
   font-weight: 600;
-  color: var(--black);
+  color: var(--fg-primary);
   text-decoration: none;
   transition-property: opacity;
   transition-duration: 200ms;
@@ -970,6 +1041,7 @@
 
 /* ════════════════════════════════
    SECTION 13 — BOTTOM CTA
+   Intentional dark: uses raw palette.
    ════════════════════════════════ */
 .cta-bottom {
   background-color: var(--black);
@@ -1029,7 +1101,6 @@
    RESPONSIVE — Bricks breakpoints
    ════════════════════════════════ */
 
-/* Tablet landscape */
 @media (max-width: 1024px) {
   .ideal__grid {
     grid-template-columns: 1fr;
@@ -1041,7 +1112,6 @@
   }
 }
 
-/* Tablet portrait */
 @media (max-width: 991px) {
   .question-item {
     grid-template-columns: 1fr;
@@ -1049,16 +1119,12 @@
   }
 }
 
-/* Mobile landscape */
 @media (max-width: 767px) {
   .container {
     padding-left: var(--space-5);
     padding-right: var(--space-5);
   }
-  .hero {
-    padding-top: var(--space-16);
-    padding-bottom: var(--space-16);
-  }
+  .hero,
   .ideal,
   .services,
   .process,
@@ -1086,7 +1152,6 @@
   }
 }
 
-/* Mobile portrait */
 @media (max-width: 478px) {
   .services__grid,
   .process__grid,
