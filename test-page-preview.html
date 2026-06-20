@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>/test — preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Brand — restrained: black text, white text on dark, forest accent, two backgrounds */
+  --ink:#111111;          /* text on light */
+  --forest:#022C22;       /* accent + dark brand background */
+  --forest-hover:#0a3a2f; /* subtle hover for green buttons */
+  --bg:#FFFFFF;
+  --bg-alt:#F2F4F2;
+  --white:#FFFFFF;        /* text on dark */
+  --line:#E2E4E2;         /* hairline dividers/borders */
+  --muted-on-dark:#C2CCC7;/* secondary text on forest */
+
+  --radius-md:14px;
+  --radius-lg:24px;
+  --radius-full:9999px;
+
+  --space-4:16px; --space-6:24px; --space-8:32px;
+  --space-12:48px; --space-16:64px; --space-20:80px; --space-24:96px;
+
+  --font-head:"BakersvilleNova","Libre Baskerville",Georgia,serif;
+  --font-body:"Manrope",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;font-family:var(--font-body);color:var(--ink);background-color:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased;}
+.container{max-width:1180px;margin-left:auto;margin-right:auto;padding-left:var(--space-8);padding-right:var(--space-8);}
+.eyebrow{font-family:var(--font-body);font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--forest);margin:0 0 var(--space-6);}
+.eyebrow--on-dark{color:var(--muted-on-dark);}
+h1,h2,h3{font-family:var(--font-head);color:var(--ink);font-weight:700;line-height:1.1;margin:0;}
+
+.button{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-weight:700;font-size:15px;text-decoration:none;cursor:pointer;border-radius:var(--radius-full);padding:15px 30px;border:2px solid transparent;transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease,color .18s ease;}
+/* on light */
+.button--primary{background-color:var(--forest);color:var(--white);}
+.button--primary:hover{background-color:var(--forest-hover);transform:translateY(-2px);box-shadow:0 10px 24px rgba(2,44,34,.18);}
+.button--outline{background-color:transparent;color:var(--ink);border-color:var(--ink);}
+.button--outline:hover{background-color:var(--ink);color:var(--white);}
+/* on dark (forest) */
+.button--on-dark{background-color:var(--white);color:var(--forest);}
+.button--on-dark:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.25);}
+.button--on-dark-outline{background-color:transparent;color:var(--white);border-color:var(--white);}
+.button--on-dark-outline:hover{background-color:var(--white);color:var(--forest);}
+
+/* ── Section 1 — hero, forest brand background ───── */
+.rituals-hero{background-color:var(--forest);color:var(--white);padding-top:var(--space-24);padding-bottom:var(--space-24);}
+.rituals-hero__inner{max-width:780px;}
+.rituals-hero__title{color:var(--white);font-size:clamp(2.6rem,5.5vw,4.4rem);margin-bottom:var(--space-6);}
+.rituals-hero__title em{font-style:italic;}
+.rituals-hero__lead{font-size:clamp(1.05rem,1.6vw,1.3rem);color:var(--muted-on-dark);max-width:620px;margin:0 0 var(--space-12);}
+.rituals-hero__actions{display:flex;flex-wrap:wrap;gap:var(--space-4);}
+
+/* ── Section 2 — feature, white ──────────────────── */
+.rituals-feature{background-color:var(--bg);padding-top:var(--space-24);padding-bottom:var(--space-24);}
+.rituals-feature__grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-20);align-items:center;}
+.rituals-feature__title{font-size:clamp(2rem,4vw,3rem);margin-bottom:var(--space-6);}
+.rituals-feature__body{font-size:1.08rem;color:var(--ink);margin-bottom:var(--space-8);}
+.rituals-feature__list{list-style:none;margin:0 0 var(--space-12);padding:0;display:grid;gap:var(--space-4);}
+.rituals-feature__list li{position:relative;padding-left:30px;font-weight:500;color:var(--ink);}
+.rituals-feature__list li::before{content:"";position:absolute;left:0;top:9px;width:10px;height:10px;border-radius:var(--radius-full);background-color:var(--forest);}
+.rituals-feature__panel{background-color:var(--forest);border-radius:var(--radius-lg);min-height:420px;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--space-12);color:var(--white);}
+.rituals-feature__stat{font-family:var(--font-head);font-size:clamp(3rem,6vw,5rem);line-height:1;color:var(--white);}
+.rituals-feature__stat-label{font-size:1.05rem;color:var(--muted-on-dark);margin-top:var(--space-4);}
+
+/* ── Section 3 — cards, alt grey ─────────────────── */
+.rituals-cards{background-color:var(--bg-alt);padding-top:var(--space-24);padding-bottom:var(--space-24);}
+.rituals-cards__head{max-width:660px;margin-bottom:var(--space-16);}
+.rituals-cards__title{font-size:clamp(2rem,4vw,3rem);margin-bottom:var(--space-6);}
+.rituals-cards__intro{font-size:1.08rem;color:var(--ink);}
+.rituals-cards__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-8);}
+.card{background-color:var(--bg);border:1px solid var(--line);border-radius:var(--radius-lg);padding:var(--space-12);transition:transform .2s ease,box-shadow .2s ease;}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(2,44,34,.10);}
+.card__num{font-family:var(--font-head);font-size:1.4rem;font-weight:700;color:var(--forest);display:block;margin-bottom:var(--space-6);padding-bottom:var(--space-4);border-bottom:1px solid var(--line);}
+.card__title{font-size:1.4rem;margin-bottom:var(--space-4);}
+.card__body{font-size:1rem;color:var(--ink);}
+
+@media (max-width:991px){
+  .rituals-feature__grid{grid-template-columns:1fr;gap:var(--space-12);}
+  .rituals-feature__panel{min-height:300px;}
+}
+@media (max-width:767px){
+  .container{padding-left:var(--space-6);padding-right:var(--space-6);}
+  .rituals-hero{padding-top:var(--space-20);padding-bottom:var(--space-20);}
+}
+</style>
+</head>
+<body>
+
+<section class="rituals-hero">
+  <div class="container">
+    <div class="rituals-hero__inner">
+      <p class="eyebrow eyebrow--on-dark">Field notes</p>
+      <h1 class="rituals-hero__title">The quiet power of <em>morning light</em></h1>
+      <p class="rituals-hero__lead">Ten minutes of daylight before your first coffee sets your body clock for the entire day — steadier energy, calmer evenings, better sleep. No app required.</p>
+      <div class="rituals-hero__actions">
+        <a class="button button--on-dark" href="#">Read the ritual</a>
+        <a class="button button--on-dark-outline" href="#">Why it works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rituals-feature">
+  <div class="container">
+    <div class="rituals-feature__grid">
+      <div class="rituals-feature__col">
+        <p class="eyebrow">Small things, big return</p>
+        <h2 class="rituals-feature__title">A houseplant is the cheapest upgrade your room will ever get</h2>
+        <p class="rituals-feature__body">One leafy thing on a desk changes how a space feels — and, it turns out, how the people in it feel too. Greenery softens noise, nudges humidity, and gives the eyes somewhere restful to land.</p>
+        <ul class="rituals-feature__list">
+          <li>Pothos and snake plants forgive almost any schedule</li>
+          <li>A pot near the window beats a screensaver, every time</li>
+          <li>Watering becomes a small, grounding weekly habit</li>
+        </ul>
+        <a class="button button--primary" href="#">Pick your first plant</a>
+      </div>
+      <div class="rituals-feature__panel">
+        <span class="rituals-feature__stat">15%</span>
+        <span class="rituals-feature__stat-label">jump in focus reported in workspaces with live plants nearby</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rituals-cards">
+  <div class="container">
+    <div class="rituals-cards__head">
+      <p class="eyebrow">Worth trying</p>
+      <h2 class="rituals-cards__title">Three small rituals, zero subscription fees</h2>
+      <p class="rituals-cards__intro">A short, unscientific list of analog habits that punch well above their weight. Pick one and run it for a week.</p>
+    </div>
+    <div class="rituals-cards__grid">
+      <div class="card">
+        <span class="card__num">01</span>
+        <h3 class="card__title">Write one letter</h3>
+        <p class="card__body">A real, handwritten note to someone who'd never expect it. Slower than a text, and remembered far longer.</p>
+      </div>
+      <div class="card">
+        <span class="card__num">02</span>
+        <h3 class="card__title">Brew tea on purpose</h3>
+        <p class="card__body">No multitasking. Just the kettle, the steam, and three minutes that belong only to you.</p>
+      </div>
+      <div class="card">
+        <span class="card__num">03</span>
+        <h3 class="card__title">Take the long way</h3>
+        <p class="card__body">A ten-minute walk with no destination clears more mental clutter than most productivity hacks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

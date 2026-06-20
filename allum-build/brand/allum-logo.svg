@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96" width="320" height="96" role="img" aria-label="Allum">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&amp;display=swap');
+    .wm { font-family:'Hanken Grotesk', system-ui, sans-serif; font-weight:700; font-size:42px; letter-spacing:-2px; fill:#101010; }
+  </style>
+
+  <!-- Mark: rounded navy chip with an ascending "A" peak + summit dot (reaching the top of search) -->
+  <g transform="translate(20 24)">
+    <rect width="48" height="48" rx="13" fill="#03324f"/>
+    <circle cx="24" cy="11.5" r="2.8" fill="#ffffff"/>
+    <path d="M13 36 L24 15 L35 36" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18.4 28 H29.6" stroke="#9FC4E0" stroke-width="3.4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text class="wm" x="84" y="62">Allum</text>
+</svg>

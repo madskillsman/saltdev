@@ -105,10 +105,10 @@ html[data-bricks-theme="dark"] {
   --bg-subtle:  #141414;
   --bg-card:    #252525;
 
-  --fg-primary: var(--white);
-  --fg-body:    var(--g300);
-  --fg-muted:   var(--g400);
-  --fg-faint:   var(--g500);
+  --fg-primary: #FFFFFF;
+  --fg-body:    #CCCCCC;
+  --fg-muted:   #AAAAAA;
+  --fg-faint:   #888888;
   --fg-dim:     #777777;
 
   --bd-base:        #2A2A2A;

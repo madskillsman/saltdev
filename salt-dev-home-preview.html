@@ -1,0 +1,1153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salt Development — Home Page Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --primary:        #111111;
+      --primary-hover:  #2A2A2A;
+      --accent:         #444444;
+      --fg:             #111111;
+      --fg-muted:       #666666;
+      --fg-subtle:      #AAAAAA;
+      --bg:             #FFFFFF;
+      --bg-alt:         #F8F8F8;
+      --bg-dark:        #111111;
+      --border:         #E0E0E0;
+
+      --space-2xs: clamp(0.125rem, 0.25vw, 0.25rem);
+      --space-xs:  clamp(0.25rem,  0.5vw,  0.5rem);
+      --space-s:   clamp(0.5rem,   1vw,    1rem);
+      --space-m:   clamp(1rem,     2vw,    1.5rem);
+      --space-l:   clamp(1.5rem,   3vw,    2.5rem);
+      --space-xl:  clamp(2.5rem,   5vw,    4rem);
+      --space-2xl: clamp(4rem,     8vw,    6rem);
+
+      --text-xs: clamp(0.75rem,  0.8vw,  0.875rem);
+      --text-s:  clamp(0.875rem, 0.9vw,  1rem);
+      --text-m:  clamp(1rem,     1.1vw,  1.125rem);
+      --text-l:  clamp(1.125rem, 1.4vw,  1.375rem);
+      --h6:      clamp(1rem,     1.2vw,  1.25rem);
+      --h5:      clamp(1.125rem, 1.5vw,  1.5rem);
+      --h4:      clamp(1.25rem,  1.8vw,  1.75rem);
+      --h3:      clamp(1.5rem,   2.5vw,  2rem);
+      --h2:      clamp(2rem,     4vw,    3rem);
+      --h1:      clamp(2.5rem,   5vw,    4rem);
+
+      --radius-s:    0.375rem;
+      --radius-m:    0.75rem;
+      --radius-l:    1.25rem;
+      --radius-full: 9999px;
+
+      --shadow-s: 0 1px 3px 0 rgb(0 0 0 / 0.10);
+      --shadow-m: 0 4px 16px rgba(0,0,0,0.08);
+      --shadow-l: 0 8px 32px rgba(0,0,0,0.10);
+
+      --max-width:        1200px;
+      --max-width-narrow: 720px;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--fg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,h2,h3,h4,h5,h6,p { margin: 0; }
+
+    /* ── Nav ── */
+    .nav {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 9999px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      padding: 6px 8px 6px 16px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      white-space: nowrap;
+      transition: all 250ms ease;
+    }
+    .nav.scrolled {
+      background: rgba(255,255,255,0.96);
+      border-color: #E0E0E0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+    }
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-right: 8px;
+      text-decoration: none;
+    }
+    .nav__logo-mark {
+      width: 28px;
+      height: 28px;
+      background: #111;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav__logo-mark span {
+      color: #fff;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: -0.02em;
+    }
+    .nav__link {
+      font-size: 13px;
+      font-weight: 500;
+      color: #666;
+      background: none;
+      border: none;
+      padding: 7px 12px;
+      border-radius: 9999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 150ms;
+      font-family: var(--font-sans);
+    }
+    .nav__link:hover { background: #F0F0F0; color: #111; }
+    .nav__cta {
+      font-size: 13px;
+      font-weight: 600;
+      background: #111;
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-left: 4px;
+      text-decoration: none;
+      font-family: var(--font-sans);
+      transition: opacity 200ms;
+    }
+    .nav__cta:hover { opacity: 0.82; }
+
+    /* ── Shared ── */
+    .container {
+      max-width: var(--max-width);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: var(--space-m);
+      padding-right: var(--space-m);
+    }
+    .container--narrow { max-width: var(--max-width-narrow); }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      padding: var(--space-s) var(--space-l);
+      font-size: var(--text-m);
+      font-weight: 600;
+      font-family: var(--font-sans);
+      line-height: 1;
+      text-decoration: none;
+      border-radius: var(--radius-l);
+      transition: opacity 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      cursor: pointer;
+    }
+    .button--white { background: var(--bg); color: var(--fg); border: none; }
+    .button--white:hover { opacity: 0.9; }
+    .button--ghost-light { background: transparent; color: var(--fg-subtle); border: 1.5px solid #444; }
+    .button--ghost-light:hover { border-color: var(--fg-subtle); color: var(--bg); }
+    .button--primary-dark { background: var(--fg); color: var(--bg); border: none; }
+    .button--primary-dark:hover { opacity: 0.85; }
+    .button--outline-dark { background: transparent; color: var(--fg); border: 1.5px solid var(--border); }
+    .button--outline-dark:hover { border-color: var(--fg); }
+
+    .section-header__eyebrow {
+      display: inline-block;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      margin-bottom: var(--space-s);
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+    .section-header__title {
+      font-size: var(--h2);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      margin-top: var(--space-xs);
+      line-height: 1.15;
+    }
+    .section-header__subtitle {
+      font-size: var(--text-m);
+      color: var(--fg-muted);
+      line-height: 1.7;
+      margin-top: var(--space-s);
+    }
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-l);
+      padding: var(--space-l);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .card:hover { box-shadow: var(--shadow-l); transform: translateY(-2px); }
+    .underline-link {
+      font-size: var(--text-m);
+      font-weight: 600;
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: border-color 0.2s ease;
+    }
+    .underline-link:hover { border-bottom-color: var(--fg); }
+
+    /* ── SECTION 1: HERO ── */
+    .hero {
+      background-color: var(--bg-dark);
+      padding-top: var(--space-2xl);
+      padding-bottom: var(--space-2xl);
+    }
+    .hero__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+      align-items: center;
+    }
+    .hero__copy {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-l);
+    }
+    .hero__eyebrow {
+      display: inline-block;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      background: #1A1A1A;
+      padding: 5px 14px;
+      border-radius: var(--radius-full);
+      align-self: flex-start;
+    }
+    .hero__headline {
+      font-size: var(--h1);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--bg);
+    }
+    .hero__subhead {
+      font-size: var(--text-l);
+      color: var(--fg-subtle);
+      line-height: 1.65;
+    }
+    .hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-s); }
+    .hero__visual {
+      position: relative;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero__ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid #2A2A2A;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .hero__ring--lg { width: 380px; height: 380px; }
+    .hero__ring--sm { width: 280px; height: 280px; }
+    .hero__stats-card {
+      position: relative;
+      z-index: 2;
+      background: #1A1A1A;
+      border: 1px solid #2A2A2A;
+      border-radius: var(--radius-l);
+      padding: 28px 32px;
+      width: 210px;
+    }
+    .hero__stats-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      margin-bottom: 14px;
+    }
+    .hero__stats-number { font-size: 38px; font-weight: 300; color: var(--bg); letter-spacing: -0.02em; line-height: 1; }
+    .hero__stats-sub { font-size: 12px; color: var(--fg-muted); margin-top: 6px; }
+    .hero__bars { display: flex; align-items: flex-end; gap: 5px; margin-top: 20px; height: 40px; }
+    .hero__bar { flex: 1; background: #2A2A2A; border-radius: 3px; }
+    .hero__bar--active { background: var(--bg); }
+    .hero__chip {
+      position: absolute;
+      background: #1A1A1A;
+      border: 1px solid #2A2A2A;
+      border-radius: 10px;
+      padding: 10px 16px;
+      z-index: 3;
+    }
+    .hero__chip--speed { top: 18%; right: 8%; }
+    .hero__chip--rank  { bottom: 20%; left: 4%; }
+    .hero__chip--conv  { top: 14%; left: 10%; }
+    .hero__chip-label { font-size: 10px; color: var(--fg-subtle); margin-bottom: 4px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .hero__chip-value { font-size: 22px; font-weight: 300; color: var(--bg); letter-spacing: -0.02em; }
+    .hero__chip-denom { font-size: 13px; color: var(--fg-subtle); }
+    .hero__chip-name  { font-size: 13px; font-weight: 400; color: var(--bg); }
+
+    /* ── SECTION 2: WHO WE WORK WITH ── */
+    .who {
+      background-color: var(--bg-alt);
+      padding-top: var(--space-2xl);
+      padding-bottom: var(--space-2xl);
+    }
+    .who__inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2xl); align-items: start; }
+    .who__header { display: flex; flex-direction: column; position: sticky; top: var(--space-xl); }
+    .who__title { font-size: var(--h3); font-weight: 700; letter-spacing: -0.02em; color: var(--fg); line-height: 1.2; }
+    .who__content { display: flex; flex-direction: column; gap: var(--space-m); }
+    .who__body { font-size: var(--text-m); color: var(--fg-muted); line-height: 1.75; }
+    .who__verticals { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin-top: var(--space-s); }
+    .who__tag {
+      display: inline-block;
+      font-size: var(--text-s);
+      font-weight: 600;
+      color: var(--fg);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: var(--space-xs) var(--space-s);
+      border-radius: var(--radius-full);
+    }
+
+    /* ── SECTION 3: WHAT WE DO ── */
+    .services {
+      background-color: var(--bg);
+      padding-top: var(--space-2xl);
+      padding-bottom: var(--space-2xl);
+    }
+    .services__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-m); }
+    .services__card { display: flex; flex-direction: column; gap: var(--space-m); }
+    .services__card--dark { background: var(--bg-dark); border-color: var(--bg-dark); }
+    .services__tag {
+      display: inline-block;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      background: var(--bg-alt);
+      color: var(--fg-muted);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      align-self: flex-start;
+    }
+    .services__tag--on-dark { background: #2A2A2A; color: var(--fg-subtle); }
+    .services__card-title { font-size: var(--h5); font-weight: 700; letter-spacing: -0.01em; color: var(--fg); }
+    .services__card-title--light { color: var(--bg); }
+    .services__card-body { font-size: var(--text-s); color: var(--fg-muted); line-height: 1.65; flex: 1; }
+    .services__card-body--light { color: var(--fg-subtle); }
+    .services__footer { text-align: center; margin-top: var(--space-xl); }
+
+    /* ── SECTION 4: HOW WE WORK ── */
+    .process {
+      background-color: var(--bg-alt);
+      padding-top: var(--space-2xl);
+      padding-bottom: var(--space-2xl);
+    }
+    .process__steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; }
+    .process__step { padding: var(--space-l) var(--space-l) var(--space-l) 0; border-top: 2px solid var(--border); }
+    .process__step--first { border-top-color: var(--fg); }
+    .process__num { font-size: var(--text-s); font-weight: 700; letter-spacing: 0.05em; color: var(--fg-subtle); margin-bottom: var(--space-m); }
+    .process__step-title { font-size: var(--h5); font-weight: 700; letter-spacing: -0.01em; color: var(--fg); margin-bottom: var(--space-s); }
+    .process__step-body { font-size: var(--text-s); color: var(--fg-muted); line-height: 1.65; }
+
+    /* ── SECTION 5: MILESTONES ── */
+    .milestones {
+      background-color: var(--bg);
+      padding-top: var(--space-2xl);
+      padding-bottom: var(--space-2xl);
+    }
+    .milestones__list { display: flex; flex-direction: column; }
+    .milestones__item { display: grid; grid-template-columns: 7rem 1fr; gap: var(--space-l); align-items: start; padding: var(--space-l) 0; border-top: 1px solid var(--border); }
+    .milestones__item:first-child { border-top-color: var(--fg); }
+    .milestones__day { font-size: var(--text-s); font-weight: 700; color: var(--fg); letter-spacing: -0.01em; }
+    .milestones__body-col { display: flex; flex-direction: column; gap: var(--space-xs); }
+    .milestones__item-title { font-size: var(--h5); font-weight: 700; letter-spacing: -0.01em; color: var(--fg); }
+    .milestones__item-body { font-size: var(--text-s); color: var(--fg-muted); line-height: 1.65; }
+    .milestones__note {
+      margin-top: var(--space-xl);
+      padding: var(--space-l);
+      background: var(--bg-alt);
+      border-radius: var(--radius-l);
+      border-left: 3px solid var(--fg);
+    }
+    .milestones__note-text { font-size: var(--text-s); color: var(--fg-muted); line-height: 1.7; font-style: italic; }
+
+    /* ── SECTION 6: PRICING ── */
+    .pricing {
+      background-color: var(--bg-alt);
+      padding-top: var(--space-2xl);
+      padding-bottom: var(--space-2xl);
+    }
+    .pricing__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-m); align-items: start; }
+    .pricing__card { display: flex; flex-direction: column; gap: var(--space-m); }
+    .pricing__card--featured { background: var(--bg-dark); border-color: var(--bg-dark); }
+    .pricing__card-top { display: flex; flex-direction: column; gap: var(--space-s); }
+    .pricing__badge {
+      display: inline-block;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      background: var(--bg-alt);
+      color: var(--fg-muted);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      align-self: flex-start;
+    }
+    .pricing__badge--on-dark { background: #2A2A2A; color: var(--fg-subtle); }
+    .pricing__card-name { font-size: var(--h4); font-weight: 700; letter-spacing: -0.02em; color: var(--fg); }
+    .pricing__card-name--light { color: var(--bg); }
+    .pricing__price-row { display: flex; align-items: baseline; gap: 4px; }
+    .pricing__amount { font-size: var(--h2); font-weight: 300; letter-spacing: -0.03em; color: var(--fg); line-height: 1; }
+    .pricing__amount--light { color: var(--bg); }
+    .pricing__period { font-size: var(--text-s); color: var(--fg-muted); }
+    .pricing__period--light { color: var(--fg-subtle); }
+    .pricing__card-desc { font-size: var(--text-s); color: var(--fg-muted); line-height: 1.65; flex: 1; }
+    .pricing__card-desc--light { color: var(--fg-subtle); }
+    .pricing__cta { width: 100%; margin-top: auto; }
+    .pricing__waiver {
+      text-align: center;
+      margin-top: var(--space-l);
+      padding: var(--space-m);
+      background: var(--bg);
+      border-radius: var(--radius-l);
+      border: 1px solid var(--border);
+    }
+    .pricing__waiver-text { font-size: var(--text-s); font-weight: 600; color: var(--fg); }
+    .pricing__footer { text-align: center; margin-top: var(--space-l); }
+
+    /* ── SECTION 7: NUMBER ONE QUESTION ── */
+    .trust-block {
+      background-color: var(--bg-dark);
+      padding-top: var(--space-2xl);
+      padding-bottom: var(--space-2xl);
+    }
+    .trust-block__inner { display: flex; flex-direction: column; gap: var(--space-l); }
+    .trust-block__eyebrow { color: var(--fg-subtle); }
+    .trust-block__heading { font-size: var(--h2); font-weight: 300; letter-spacing: -0.02em; color: var(--bg); line-height: 1.15; }
+    .trust-block__body-wrap { display: flex; flex-direction: column; gap: var(--space-m); }
+    .trust-block__body { font-size: var(--text-m); color: var(--fg-subtle); line-height: 1.75; }
+    .trust-block__cta { align-self: flex-start; }
+
+    /* ── SECTION 8: TESTIMONIALS ── */
+    .testimonials {
+      background-color: var(--bg);
+      padding-top: var(--space-2xl);
+      padding-bottom: var(--space-2xl);
+    }
+    .testimonials__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-m); }
+    .testimonials__card { display: flex; flex-direction: column; gap: var(--space-m); }
+    .testimonials__mark { font-size: 2.5rem; color: var(--border); line-height: 1; font-family: Georgia, serif; }
+    .testimonials__quote { font-size: var(--text-m); color: var(--fg-muted); line-height: 1.7; font-style: italic; flex: 1; }
+    .testimonials__byline { display: flex; flex-direction: column; gap: 2px; margin-top: auto; }
+    .testimonials__name { font-size: var(--text-s); font-weight: 700; color: var(--fg); }
+    .testimonials__role { font-size: var(--text-xs); color: var(--fg-subtle); }
+    .testimonials .section-header { text-align: left; max-width: none; }
+    .testimonials .section-header__title { text-align: left; }
+
+    /* ── SECTION 9: MID CTA ── */
+    .cta-mid {
+      background-color: var(--bg-alt);
+      padding-top: var(--space-2xl);
+      padding-bottom: var(--space-2xl);
+    }
+    .cta-mid__inner { text-align: center; display: flex; flex-direction: column; gap: var(--space-l); align-items: center; }
+    .cta-mid__heading { font-size: var(--h2); font-weight: 700; letter-spacing: -0.02em; color: var(--fg); line-height: 1.15; }
+    .cta-mid__body { font-size: var(--text-l); color: var(--fg-muted); line-height: 1.65; max-width: 56ch; }
+    .cta-mid__actions { display: flex; flex-direction: column; align-items: center; gap: var(--space-s); }
+    .cta-mid__subtext { font-size: var(--text-xs); color: var(--fg-subtle); }
+
+    /* ── SECTION 10: FAQ ── */
+    .faq {
+      background-color: var(--bg-alt);
+      padding-top: var(--space-2xl);
+      padding-bottom: var(--space-2xl);
+    }
+    .faq__list { display: flex; flex-direction: column; }
+    .faq__item { border-bottom: 1px solid var(--border); }
+    .faq__question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-m);
+      padding: var(--space-m) 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-sans);
+      font-size: var(--text-l);
+      font-weight: 600;
+      color: var(--fg);
+      line-height: 1.4;
+    }
+    .faq__question:hover { color: var(--fg-muted); }
+    .faq__icon { flex-shrink: 0; font-size: 1.25rem; font-weight: 300; color: var(--fg-subtle); transition: transform 0.2s ease; }
+    .faq__item.open .faq__icon { transform: rotate(45deg); }
+    .faq__answer { font-size: var(--text-m); color: var(--fg-muted); line-height: 1.7; padding-bottom: var(--space-m); max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq__item.open .faq__answer { max-height: 400px; }
+
+    /* ── SECTION 11: INSIGHTS ── */
+    .insights {
+      background-color: var(--bg-alt);
+      padding-top: var(--space-2xl);
+      padding-bottom: var(--space-2xl);
+    }
+    .insights__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-m); }
+    .insights__card { display: flex; flex-direction: column; gap: var(--space-s); }
+    .insights__card--muted { opacity: 0.45; }
+    .insights__tag {
+      display: inline-block;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      background: var(--bg);
+      color: var(--fg-muted);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      align-self: flex-start;
+      border: 1px solid var(--border);
+    }
+    .insights__card-title { font-size: var(--h5); font-weight: 700; letter-spacing: -0.01em; color: var(--fg); line-height: 1.3; }
+    .insights__card-summary { font-size: var(--text-s); color: var(--fg-muted); line-height: 1.65; flex: 1; }
+    .insights__card-foot { margin-top: auto; }
+    .insights__read-time { font-size: var(--text-xs); color: var(--fg-subtle); }
+    .insights__footer { text-align: center; margin-top: var(--space-xl); }
+
+    /* ── SECTION 12: CONTACT ── */
+    .contact {
+      background-color: var(--bg);
+      padding-top: var(--space-2xl);
+      padding-bottom: var(--space-2xl);
+    }
+    .contact__inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2xl); align-items: start; }
+    .contact__header { display: flex; flex-direction: column; gap: var(--space-m); position: sticky; top: var(--space-xl); }
+    .contact__title { font-size: var(--h3); font-weight: 700; letter-spacing: -0.02em; color: var(--fg); line-height: 1.2; }
+    .contact__desc { font-size: var(--text-m); color: var(--fg-muted); line-height: 1.65; }
+    .contact__email { align-self: flex-start; }
+    .contact__form-wrap { display: flex; flex-direction: column; gap: var(--space-m); }
+    .contact__form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-m);
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-l);
+      padding: var(--space-l);
+    }
+    .contact__field { display: flex; flex-direction: column; gap: var(--space-xs); }
+    .contact__label { font-size: var(--text-s); font-weight: 600; color: var(--fg); }
+    .contact__input {
+      font-size: var(--text-s);
+      font-family: var(--font-sans);
+      color: var(--fg);
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-m);
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color 0.2s ease;
+      width: 100%;
+    }
+    .contact__input:focus { border-color: var(--fg); }
+    .contact__textarea { resize: vertical; min-height: 120px; }
+    .contact__submit {
+      font-family: var(--font-sans);
+      font-size: var(--text-m);
+      font-weight: 600;
+      background: var(--fg);
+      color: var(--bg);
+      border: none;
+      padding: var(--space-s) var(--space-l);
+      border-radius: var(--radius-m);
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+      width: 100%;
+    }
+    .contact__submit:hover { opacity: 0.85; }
+    .contact__alt { text-align: center; }
+
+    /* ── SECTION 13: FINAL CTA ── */
+    .cta-final {
+      background-color: var(--bg-dark);
+      padding-top: var(--space-2xl);
+      padding-bottom: var(--space-2xl);
+    }
+    .cta-final__inner { text-align: center; display: flex; flex-direction: column; gap: var(--space-l); align-items: center; }
+    .cta-final__heading { font-size: var(--h1); font-weight: 300; letter-spacing: -0.02em; color: var(--bg); line-height: 1.1; }
+    .cta-final__body { font-size: var(--text-l); color: var(--fg-subtle); line-height: 1.65; max-width: 52ch; }
+    .cta-final__actions { display: flex; flex-direction: column; align-items: center; gap: var(--space-s); }
+    .cta-final__subtext { font-size: var(--text-xs); color: var(--fg-subtle); }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+      padding: var(--space-xl) 0;
+    }
+    .footer__inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-m); }
+    .footer__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .footer__logo-mark { width: 28px; height: 28px; background: #111; border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+    .footer__logo-mark span { color: #fff; font-weight: 800; font-size: 12px; }
+    .footer__logo-name { font-weight: 700; font-size: 14px; color: var(--fg); }
+    .footer__links { display: flex; gap: 8px; }
+    .footer__link { font-size: 13px; color: var(--fg-muted); text-decoration: none; padding: 4px 10px; border-radius: 6px; transition: color 0.15s; }
+    .footer__link:hover { color: var(--fg); }
+    .footer__copy { font-size: 12px; color: var(--fg-subtle); }
+
+    /* ── Responsive ── */
+    @media (max-width: 991px) {
+      .hero__inner { grid-template-columns: 1fr; }
+      .hero__visual { display: none; }
+      .nav { padding: 6px 10px; }
+    }
+    @media (max-width: 767px) {
+      .who__inner, .contact__inner { grid-template-columns: 1fr; }
+      .who__header, .contact__header { position: static; }
+      .process__step { padding-right: 0; }
+      .milestones__item { grid-template-columns: 1fr; gap: var(--space-xs); }
+      .footer__inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a class="nav__logo" href="#">
+      <div class="nav__logo-mark"><span>S</span></div>
+    </a>
+    <a class="nav__link" href="#services">Services</a>
+    <a class="nav__link" href="#pricing">Pricing</a>
+    <a class="nav__link" href="#testimonials">Results</a>
+    <a class="nav__link" href="#insights">Insights</a>
+    <a class="nav__cta" href="#contact">Get started</a>
+  </nav>
+
+  <!-- SECTION 1: HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__inner">
+        <div class="hero__copy">
+          <span class="hero__eyebrow">Web development &amp; SEO / GEO</span>
+          <h1 class="hero__headline">Your digital presence should be your best salesperson.</h1>
+          <p class="hero__subhead">Your clients are always online. We craft their interaction with you. Salt Development builds SEO/GEO systems and custom websites for service businesses doing $500k+ a year.</p>
+          <div class="hero__actions">
+            <a href="#contact" class="button button--white">Find revenue opportunities</a>
+            <a href="#pricing" class="button button--ghost-light">See pricing</a>
+          </div>
+        </div>
+        <div class="hero__visual" aria-hidden="true">
+          <div class="hero__ring hero__ring--lg"></div>
+          <div class="hero__ring hero__ring--sm"></div>
+          <div class="hero__stats-card">
+            <div class="hero__stats-label">Organic traffic</div>
+            <div class="hero__stats-number">+112%</div>
+            <div class="hero__stats-sub">in 4 months</div>
+            <div class="hero__bars">
+              <div class="hero__bar" style="height:18px"></div>
+              <div class="hero__bar" style="height:22px"></div>
+              <div class="hero__bar" style="height:20px"></div>
+              <div class="hero__bar" style="height:28px"></div>
+              <div class="hero__bar" style="height:32px"></div>
+              <div class="hero__bar" style="height:38px"></div>
+              <div class="hero__bar hero__bar--active" style="height:40px"></div>
+            </div>
+          </div>
+          <div class="hero__chip hero__chip--speed">
+            <div class="hero__chip-label">Page speed</div>
+            <div class="hero__chip-value">98<span class="hero__chip-denom">/100</span></div>
+          </div>
+          <div class="hero__chip hero__chip--rank">
+            <div class="hero__chip-label">Rank #1</div>
+            <div class="hero__chip-name">local plumbing co.</div>
+          </div>
+          <div class="hero__chip hero__chip--conv">
+            <div class="hero__chip-label">Conversions</div>
+            <div class="hero__chip-value">3×</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: WHO WE WORK WITH -->
+  <section class="who">
+    <div class="container">
+      <div class="who__inner">
+        <div class="who__header">
+          <span class="section-header__eyebrow">Who this is for</span>
+          <h2 class="who__title">Built for businesses that are ready to grow.</h2>
+        </div>
+        <div class="who__content">
+          <p class="who__body">We work with service businesses that have real revenue and a real need to grow. Home services, healthcare practices, real estate professionals. Businesses doing over $500k a year that need their website to perform, not just exist.</p>
+          <p class="who__body">The ideal client built their business on referrals, has strong revenue, and is hard to find online. Not struggling. Leaving leads on the table. They have a high enough average job value that one or two additional customers per month covers the cost of the retainer.</p>
+          <div class="who__verticals">
+            <span class="who__tag">Home services and trades</span>
+            <span class="who__tag">Dental and medical practices</span>
+            <span class="who__tag">Real estate professionals</span>
+            <span class="who__tag">Architecture firms</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: WHAT WE DO -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__eyebrow">What we do</span>
+        <h2 class="section-header__title">Your full digital presence, under one roof.</h2>
+        <p class="section-header__subtitle">Salt Development covers the full digital presence: custom website builds, search engine optimization, AI-driven search visibility (GEO/AEO), and Google Business Profile management. Everything is managed under one retainer. No project handoff, no account manager in between.</p>
+      </div>
+      <div class="services__grid">
+        <div class="card services__card">
+          <span class="services__tag">Web Dev</span>
+          <h3 class="services__card-title">Custom websites</h3>
+          <p class="services__card-body">Built on WordPress with Bricks Builder. Fast, conversion-focused, and structured for search from the first line of code.</p>
+        </div>
+        <div class="card services__card">
+          <span class="services__tag">SEO</span>
+          <h3 class="services__card-title">Search engine optimization</h3>
+          <p class="services__card-body">Technical SEO, local citations, and content that ranks for searches that bring in paying clients.</p>
+        </div>
+        <div class="card services__card services__card--dark">
+          <span class="services__tag services__tag--on-dark">GEO / AEO</span>
+          <h3 class="services__card-title services__card-title--light">GEO / AEO</h3>
+          <p class="services__card-body services__card-body--light">When someone asks ChatGPT or Perplexity for a service provider in their area, GEO/AEO is what makes you the answer. Most agencies are not doing this yet.</p>
+        </div>
+        <div class="card services__card">
+          <span class="services__tag">Local</span>
+          <h3 class="services__card-title">Google Business Profile</h3>
+          <p class="services__card-body">Setup, optimization, and ongoing management. The first thing most local customers see before they ever reach your website.</p>
+        </div>
+      </div>
+      <div class="services__footer">
+        <a href="#pricing" class="underline-link">See full pricing →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: HOW WE WORK -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__eyebrow">How we work</span>
+        <h2 class="section-header__title">A process built around your results.</h2>
+      </div>
+      <div class="process__steps">
+        <div class="process__step process__step--first">
+          <div class="process__num">01</div>
+          <h3 class="process__step-title">Consultation</h3>
+          <p class="process__step-body">We learn your business, your goals, and what your current digital presence is missing. You walk away with a clear roadmap of what success looks like.</p>
+        </div>
+        <div class="process__step">
+          <div class="process__num">02</div>
+          <h3 class="process__step-title">Preparation</h3>
+          <p class="process__step-body">We research your market, competitors, and ideal clients before a single pixel is designed. Decisions are backed by data, not guesswork.</p>
+        </div>
+        <div class="process__step">
+          <div class="process__num">03</div>
+          <h3 class="process__step-title">Development</h3>
+          <p class="process__step-body">We build your custom website from the ground up — conversion-focused architecture built around your brand and your goals.</p>
+        </div>
+        <div class="process__step">
+          <div class="process__num">04</div>
+          <h3 class="process__step-title">Review</h3>
+          <p class="process__step-body">Before anything goes live, you approve the final build. We do not launch until it is right.</p>
+        </div>
+        <div class="process__step">
+          <div class="process__num">05</div>
+          <h3 class="process__step-title">Upkeep</h3>
+          <p class="process__step-body">Ongoing monthly content retainers publish AI-optimized blog content designed to rank in Google, ChatGPT, Perplexity, and beyond.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: MILESTONES -->
+  <section class="milestones">
+    <div class="container container--narrow">
+      <div class="section-header">
+        <span class="section-header__eyebrow">Timeline</span>
+        <h2 class="section-header__title">What to expect, and when.</h2>
+        <p class="section-header__subtitle">Vague timelines are how bad agencies manage expectations they cannot meet. Every engagement has specific milestones:</p>
+      </div>
+      <div class="milestones__list">
+        <div class="milestones__item">
+          <div class="milestones__day-col"><span class="milestones__day">Day 15</span></div>
+          <div class="milestones__body-col">
+            <h3 class="milestones__item-title">Technical foundation</h3>
+            <p class="milestones__item-body">The site is technically optimized. Load times improved. Mobile performance addressed. Visible and measurable before any ranking movement happens.</p>
+          </div>
+        </div>
+        <div class="milestones__item">
+          <div class="milestones__day-col"><span class="milestones__day">Day 30</span></div>
+          <div class="milestones__body-col">
+            <h3 class="milestones__item-title">Data and local presence</h3>
+            <p class="milestones__item-body">Heat map data shows how visitors interact with the site. Your Google Business Profile is active and posting.</p>
+          </div>
+        </div>
+        <div class="milestones__item">
+          <div class="milestones__day-col"><span class="milestones__day">Day 60</span></div>
+          <div class="milestones__body-col">
+            <h3 class="milestones__item-title">Content and indexation</h3>
+            <p class="milestones__item-body">Indexation confirmed. Content live. Early ranking signals visible in Google Search Console.</p>
+          </div>
+        </div>
+        <div class="milestones__item">
+          <div class="milestones__day-col"><span class="milestones__day">Day 90</span></div>
+          <div class="milestones__body-col">
+            <h3 class="milestones__item-title">First ranking movement</h3>
+            <p class="milestones__item-body">First meaningful ranking movement. GBP impressions and calls measurable. AI visibility baseline established in Search Atlas.</p>
+          </div>
+        </div>
+      </div>
+      <div class="milestones__note">
+        <p class="milestones__note-text">When month two looks flat, we explain exactly why: SEO compounds. The first 30 to 60 days are infrastructure. What gets built in that window pays off in months three through six and continues after. We show you exactly what was done and what it means. <strong>No reassurances without receipts.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__eyebrow">Pricing</span>
+        <h2 class="section-header__title">Invested in your growth, not your invoice.</h2>
+        <p class="section-header__subtitle">Everything at Salt Development is priced monthly. You are investing in a system that keeps working, keeps ranking, and keeps improving as your business grows.</p>
+      </div>
+      <div class="pricing__grid">
+        <div class="card pricing__card">
+          <div class="pricing__card-top">
+            <span class="pricing__badge">Web Dev</span>
+            <h3 class="pricing__card-name">Standard website</h3>
+            <div class="pricing__price-row">
+              <span class="pricing__amount">$240</span>
+              <span class="pricing__period">/month</span>
+            </div>
+          </div>
+          <p class="pricing__card-desc">Custom WordPress build, mobile-optimized, performance-tuned, and conversion-focused.</p>
+          <a href="#contact" class="button button--outline-dark pricing__cta">Get started</a>
+        </div>
+        <div class="card pricing__card">
+          <div class="pricing__card-top">
+            <span class="pricing__badge">SEO</span>
+            <h3 class="pricing__card-name">Foundational SEO</h3>
+            <div class="pricing__price-row">
+              <span class="pricing__amount">$2,400</span>
+              <span class="pricing__period">/month</span>
+            </div>
+          </div>
+          <p class="pricing__card-desc">Technical SEO, local citations, content strategy, and monthly reporting.</p>
+          <a href="#contact" class="button button--outline-dark pricing__cta">Get started</a>
+        </div>
+        <div class="card pricing__card pricing__card--featured">
+          <div class="pricing__card-top">
+            <span class="pricing__badge pricing__badge--on-dark">GEO / AEO</span>
+            <h3 class="pricing__card-name pricing__card-name--light">GEO / AEO</h3>
+            <div class="pricing__price-row">
+              <span class="pricing__amount pricing__amount--light">$4,800</span>
+              <span class="pricing__period pricing__period--light">/month</span>
+            </div>
+          </div>
+          <p class="pricing__card-desc pricing__card-desc--light">Structured visibility in ChatGPT, Perplexity, Google AI Overviews, and beyond.</p>
+          <a href="#contact" class="button button--white pricing__cta">Get started</a>
+        </div>
+        <div class="card pricing__card">
+          <div class="pricing__card-top">
+            <span class="pricing__badge">Local</span>
+            <h3 class="pricing__card-name">Google Business Profile</h3>
+            <div class="pricing__price-row">
+              <span class="pricing__amount">$750</span>
+              <span class="pricing__period">/month</span>
+            </div>
+          </div>
+          <p class="pricing__card-desc">Full setup and ongoing management of your local search presence.</p>
+          <a href="#contact" class="button button--outline-dark pricing__cta">Get started</a>
+        </div>
+      </div>
+      <div class="pricing__waiver">
+        <p class="pricing__waiver-text">Sign up for three months and the setup fee is waived on any service.</p>
+      </div>
+      <div class="pricing__footer">
+        <a href="#" class="underline-link">See the full service lineup and pricing →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: THE NUMBER ONE QUESTION -->
+  <section class="trust-block">
+    <div class="container container--narrow">
+      <div class="trust-block__inner">
+        <span class="section-header__eyebrow trust-block__eyebrow">The question every serious client asks</span>
+        <h2 class="trust-block__heading">How do I know this will actually pay for itself?</h2>
+        <div class="trust-block__body-wrap">
+          <p class="trust-block__body">Your website and search presence exist to bring in business. If they are not doing that, they are a cost, not an investment. The goal of every engagement we take on is to close that gap: more of the right people finding you, more of them contacting you, and a measurable return on what you spend.</p>
+          <p class="trust-block__body">Before we propose anything, we look at your current situation and show you exactly where you are losing ground and what it is worth to close it. That conversation is free. You walk away with a clear picture of the opportunity whether or not we work together.</p>
+        </div>
+        <a href="#contact" class="button button--white trust-block__cta">Find revenue opportunities →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__eyebrow">What clients say</span>
+        <h2 class="section-header__title">Real results from real businesses.</h2>
+      </div>
+      <div class="testimonials__grid">
+        <div class="card testimonials__card">
+          <div class="testimonials__mark">&ldquo;</div>
+          <p class="testimonials__quote">Replace with a real client quote — specific results preferred. e.g. "We went from zero inbound calls to our busiest quarter on record."</p>
+          <div class="testimonials__byline">
+            <span class="testimonials__name">First name, last name</span>
+            <span class="testimonials__role">Business name &middot; City, State</span>
+          </div>
+        </div>
+        <div class="card testimonials__card">
+          <div class="testimonials__mark">&ldquo;</div>
+          <p class="testimonials__quote">Replace with a real client quote — specific results preferred.</p>
+          <div class="testimonials__byline">
+            <span class="testimonials__name">First name, last name</span>
+            <span class="testimonials__role">Business name &middot; City, State</span>
+          </div>
+        </div>
+        <div class="card testimonials__card">
+          <div class="testimonials__mark">&ldquo;</div>
+          <p class="testimonials__quote">Replace with a real client quote — specific results preferred.</p>
+          <div class="testimonials__byline">
+            <span class="testimonials__name">First name, last name</span>
+            <span class="testimonials__role">Business name &middot; City, State</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 9: MID CTA -->
+  <section class="cta-mid" id="free-review">
+    <div class="container container--narrow">
+      <div class="cta-mid__inner">
+        <h2 class="cta-mid__heading">Not sure where to start?</h2>
+        <p class="cta-mid__body">We will take a look at your current digital presence and walk you through what we find. No pressure, no pitch. Just a straightforward conversation about where you are, where you could be, and whether we are the right people to help you get there.</p>
+        <div class="cta-mid__actions">
+          <a href="#contact" class="button button--primary-dark">Find revenue opportunities</a>
+          <p class="cta-mid__subtext">Free. 30 minutes. No commitment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 10: FAQ -->
+  <section class="faq" id="faq">
+    <div class="container container--narrow">
+      <div class="section-header">
+        <span class="section-header__eyebrow">Frequently asked questions</span>
+        <h2 class="section-header__title">Frequently asked questions</h2>
+      </div>
+      <div class="faq__list">
+        <div class="faq__item open">
+          <button class="faq__question" onclick="toggleFaq(this)">
+            Do you use templates?
+            <span class="faq__icon">+</span>
+          </button>
+          <p class="faq__answer">No. Every site is built from scratch in Bricks Builder. No recycled layouts from previous clients.</p>
+        </div>
+        <div class="faq__item">
+          <button class="faq__question" onclick="toggleFaq(this)">
+            Will I work directly with the person building my site?
+            <span class="faq__icon">+</span>
+          </button>
+          <p class="faq__answer">Yes. There are no account managers. When you have a question, you reach Jacob — the person doing the work.</p>
+        </div>
+        <div class="faq__item">
+          <button class="faq__question" onclick="toggleFaq(this)">
+            What happens after the site goes live?
+            <span class="faq__icon">+</span>
+          </button>
+          <p class="faq__answer">The engagement continues. Post-launch SEO, GBP management, and ongoing updates are part of the retainer. The launch is not the finish line.</p>
+        </div>
+        <div class="faq__item">
+          <button class="faq__question" onclick="toggleFaq(this)">
+            How do I know it will actually generate leads?
+            <span class="faq__icon">+</span>
+          </button>
+          <p class="faq__answer">Every site is built with conversion in mind from the first wireframe. Design, copy, and structure are all built to move visitors toward a call. Every engagement also has specific 90-day milestones so you know what to expect and when.</p>
+        </div>
+        <div class="faq__item">
+          <button class="faq__question" onclick="toggleFaq(this)">
+            How long does a build take?
+            <span class="faq__icon">+</span>
+          </button>
+          <p class="faq__answer">Eight weeks at a standard pace. Under three weeks when the client moves quickly.</p>
+        </div>
+        <div class="faq__item">
+          <button class="faq__question" onclick="toggleFaq(this)">
+            What is the first step?
+            <span class="faq__icon">+</span>
+          </button>
+          <p class="faq__answer">A free conversation. We look at your current website, search rankings, and competitors, then walk you through what we found in a 30-minute call. If the fit is right, we move directly to a proposal in the same meeting. No second call, no follow-up deck.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 11: INSIGHTS -->
+  <section class="insights" id="insights">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__eyebrow">Recent insights</span>
+        <h2 class="section-header__title">Practical thinking on search and growth.</h2>
+        <p class="section-header__subtitle">Articles on web performance, local SEO, and getting service businesses found online.</p>
+      </div>
+      <div class="insights__grid">
+        <article class="card insights__card">
+          <span class="insights__tag">Coming soon</span>
+          <h3 class="insights__card-title">The first articles are in progress.</h3>
+          <p class="insights__card-summary">Check back soon for practical writing on search, performance, and digital growth for service businesses.</p>
+          <div class="insights__card-foot"><span class="insights__read-time">— min read</span></div>
+        </article>
+        <article class="card insights__card insights__card--muted">
+          <span class="insights__tag">SEO</span>
+          <h3 class="insights__card-title">Coming soon</h3>
+          <p class="insights__card-summary">Local SEO strategies that move rankings for service businesses in competitive markets.</p>
+          <div class="insights__card-foot"><span class="insights__read-time">— min read</span></div>
+        </article>
+        <article class="card insights__card insights__card--muted">
+          <span class="insights__tag">GEO / AEO</span>
+          <h3 class="insights__card-title">Coming soon</h3>
+          <p class="insights__card-summary">How GEO/AEO is changing the way local service businesses get found by AI-powered search.</p>
+          <div class="insights__card-foot"><span class="insights__read-time">— min read</span></div>
+        </article>
+      </div>
+      <div class="insights__footer">
+        <a href="#" class="underline-link">View all insights →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 12: CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact__inner">
+        <div class="contact__header">
+          <span class="section-header__eyebrow">Get in touch</span>
+          <h2 class="contact__title">Have a question before scheduling?</h2>
+          <p class="contact__desc">Have a question before scheduling a call? Reach out directly. You will hear back within one business day.</p>
+          <a href="mailto:jacob@devbysalt.com" class="underline-link contact__email">jacob@devbysalt.com</a>
+        </div>
+        <div class="contact__form-wrap">
+          <form class="contact__form" onsubmit="return false;">
+            <div class="contact__field">
+              <label class="contact__label" for="cf-name">Name</label>
+              <input class="contact__input" type="text" id="cf-name" placeholder="Your name">
+            </div>
+            <div class="contact__field">
+              <label class="contact__label" for="cf-email">Email</label>
+              <input class="contact__input" type="email" id="cf-email" placeholder="you@example.com">
+            </div>
+            <div class="contact__field">
+              <label class="contact__label" for="cf-message">How can we help?</label>
+              <textarea class="contact__input contact__textarea" id="cf-message" rows="5" placeholder="Tell us about your business and what you're trying to achieve…"></textarea>
+            </div>
+            <button type="submit" class="contact__submit">Send message</button>
+          </form>
+          <div class="contact__alt">
+            <a href="#" class="underline-link">Rather talk than type? Schedule a free 30-minute call →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 13: FINAL CTA -->
+  <section class="cta-final">
+    <div class="container container--narrow">
+      <div class="cta-final__inner">
+        <h2 class="cta-final__heading">Let's see if we're a good fit.</h2>
+        <p class="cta-final__body">A 30-minute call covers your goals, your current presence, and whether Salt Development makes sense for your business. No pressure. If we are not the right fit, we will say that too.</p>
+        <div class="cta-final__actions">
+          <a href="#contact" class="button button--white">Find revenue opportunities</a>
+          <p class="cta-final__subtext">Free. No commitment. 30 minutes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <a class="footer__logo" href="#">
+          <div class="footer__logo-mark"><span>S</span></div>
+          <span class="footer__logo-name">Salt Development</span>
+        </a>
+        <nav class="footer__links">
+          <a class="footer__link" href="#services">Services</a>
+          <a class="footer__link" href="#pricing">Pricing</a>
+          <a class="footer__link" href="#testimonials">Results</a>
+          <a class="footer__link" href="#insights">Insights</a>
+          <a class="footer__link" href="#contact">Contact</a>
+        </nav>
+        <p class="footer__copy">&copy; 2026 Salt Development. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 24);
+    }, { passive: true });
+
+    // FAQ accordion
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq__item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq__item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+</body>
+</html>

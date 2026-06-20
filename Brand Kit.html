@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Salt Development — Brand Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      src: url('./fonts/inter-regular-webfont.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #111111;
+      --white:   #FFFFFF;
+      --g25:     #FAFAFA;
+      --g50:     #F8F8F8;
+      --g100:    #F0F0F0;
+      --g200:    #E0E0E0;
+      --g300:    #CCCCCC;
+      --g400:    #AAAAAA;
+      --g500:    #888888;
+      --g600:    #666666;
+      --g700:    #444444;
+      --g800:    #2A2A2A;
+      --g900:    #1A1A1A;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.07);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+    }
+
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: var(--font);
+      background: var(--g50);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    /* ── LAYOUT ── */
+    .page { max-width: 1120px; margin: 0 auto; padding: 64px 32px 120px; }
+
+    /* ── CHAPTER HEADERS ── */
+    .chapter {
+      display: flex; align-items: center; gap: 12px;
+      margin: 80px 0 40px;
+      padding-bottom: 20px;
+      border-bottom: 1.5px solid var(--g200);
+    }
+    .chapter:first-child { margin-top: 0; }
+    .chapter-num {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--g400);
+      background: var(--g100); padding: 4px 10px; border-radius: 9999px;
+    }
+    .chapter-title {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+      text-transform: uppercase; color: var(--g500);
+    }
+
+    /* ── SECTION LABEL ── */
+    .label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--g400);
+      margin-bottom: 12px;
+    }
+
+    /* ── GRID HELPERS ── */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .grid-auto { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+    .stack { display: flex; flex-direction: column; gap: 16px; }
+    .row { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--g200);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow-md);
+    }
+    .card-dark {
+      background: var(--black);
+      border: 1px solid var(--g800);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .card-muted {
+      background: var(--g50);
+      border: 1px solid var(--g200);
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    /* ── COVER ── */
+    #cover {
+      background: var(--black);
+      border-radius: 24px;
+      padding: 80px 64px;
+      margin-bottom: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    #cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 80% 50%, rgba(255,255,255,0.04) 0%, transparent 60%);
+    }
+    #cover-dot-grid {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+    .cover-logo {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 48px; position: relative; z-index: 1;
+    }
+    .cover-logomark {
+      width: 44px; height: 44px; background: var(--white);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cover-logomark span {
+      font-size: 22px; font-weight: 800; color: var(--black); letter-spacing: -0.04em;
+    }
+    .cover-wordmark {
+      font-size: 20px; font-weight: 700; color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .cover-title {
+      font-size: clamp(42px, 5vw, 64px); font-weight: 300;
+      color: var(--white); letter-spacing: -0.03em; line-height: 1.05;
+      margin-bottom: 16px; position: relative; z-index: 1;
+    }
+    .cover-subtitle {
+      font-size: 16px; color: var(--g500); font-weight: 400;
+      position: relative; z-index: 1;
+    }
+    .cover-meta {
+      display: flex; gap: 32px; margin-top: 48px; position: relative; z-index: 1;
+    }
+    .cover-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .cover-meta-item .meta-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--g600);
+    }
+    .cover-meta-item .meta-val {
+      font-size: 13px; font-weight: 500; color: var(--g400);
+    }
+
+    /* ── COLOR SWATCHES ── */
+    .swatch-row { display: flex; gap: 0; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm); }
+    .swatch { flex: 1; height: 72px; }
+    .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; }
+    .swatch-item { display: flex; flex-direction: column; gap: 8px; }
+    .swatch-block { height: 56px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.07); }
+    .swatch-name { font-size: 11px; font-weight: 600; color: var(--g700); }
+    .swatch-hex { font-size: 11px; color: var(--g500); font-family: 'Courier New', monospace; }
+
+    /* ── TYPOGRAPHY SPECIMENS ── */
+    .type-specimen {
+      background: var(--white); border: 1px solid var(--g200);
+      border-radius: 12px; padding: 24px 28px;
+      display: flex; align-items: baseline; gap: 24px;
+    }
+    .type-specimen-meta {
+      min-width: 140px; flex-shrink: 0;
+    }
+    .type-meta-role { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--g400); margin-bottom: 4px; }
+    .type-meta-spec { font-size: 11px; color: var(--g500); font-family: 'Courier New', monospace; line-height: 1.7; }
+    .type-divider { width: 1px; height: 40px; background: var(--g200); flex-shrink: 0; align-self: center; }
+    .type-sample { flex: 1; }
+
+    /* ── SPACING ── */
+    .space-row {
+      display: flex; align-items: center; gap: 16px;
+      padding: 10px 0; border-bottom: 1px solid var(--g100);
+    }
+    .space-bar { height: 12px; background: var(--black); border-radius: 3px; }
+    .space-label { font-size: 12px; font-weight: 600; color: var(--g700); min-width: 72px; font-family: 'Courier New', monospace; }
+    .space-val { font-size: 11px; color: var(--g500); }
+
+    /* ── RADIUS ── */
+    .radius-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px; }
+    .radius-item { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .radius-box {
+      width: 80px; height: 80px; background: var(--black);
+    }
+    .radius-label { font-size: 11px; font-weight: 600; color: var(--g700); }
+    .radius-val { font-size: 11px; color: var(--g500); font-family: 'Courier New', monospace; }
+
+    /* ── SHADOWS ── */
+    .shadow-row { display: flex; gap: 20px; }
+    .shadow-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .shadow-box {
+      width: 100%; height: 100px; background: var(--white);
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    }
+    .shadow-label { font-size: 11px; font-weight: 600; color: var(--g700); }
+    .shadow-val { font-size: 10px; color: var(--g500); font-family: 'Courier New', monospace; text-align: center; }
+
+    /* ── COMPONENTS ── */
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: var(--font); font-weight: 600;
+      border: none; cursor: pointer;
+      transition: all 200ms ease;
+      white-space: nowrap; text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--black); color: var(--white);
+      padding: 12px 24px; border-radius: 9999px; font-size: 14px;
+    }
+    .btn-primary:hover { opacity: 0.8; }
+    .btn-secondary {
+      background: transparent; color: var(--black);
+      padding: 11px 22px; border-radius: 9999px; font-size: 14px;
+      border: 1.5px solid var(--g300);
+    }
+    .btn-secondary:hover { border-color: var(--black); }
+    .btn-ghost {
+      background: var(--g100); color: var(--black);
+      padding: 11px 22px; border-radius: 9999px; font-size: 14px;
+    }
+    .btn-ghost:hover { background: var(--g200); }
+    .btn-inverse {
+      background: var(--white); color: var(--black);
+      padding: 12px 24px; border-radius: 9999px; font-size: 14px;
+    }
+    .btn-inverse:hover { opacity: 0.9; }
+    .btn-sm { padding: 8px 16px; font-size: 12px; }
+    .btn-lg { padding: 15px 32px; font-size: 16px; }
+
+    /* Badges */
+    .badge {
+      display: inline-flex; align-items: center;
+      font-family: var(--font); font-size: 10px; font-weight: 700;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 9999px;
+    }
+    .badge-default { background: var(--g100); color: var(--g600); }
+    .badge-dark { background: var(--g900); color: var(--g400); }
+    .badge-outline { background: transparent; color: var(--g600); border: 1.5px solid var(--g300); }
+
+    /* Input */
+    .input-demo {
+      font-family: var(--font); font-size: 14px; color: var(--black);
+      background: var(--white); border: 1.5px solid var(--g200);
+      border-radius: 10px; padding: 11px 14px; width: 100%; outline: none;
+      transition: border 200ms;
+    }
+    .input-demo:focus { border-color: var(--black); }
+    .input-demo::placeholder { color: var(--g400); }
+    label.form-label {
+      display: block; font-size: 12px; font-weight: 600;
+      color: var(--black); margin-bottom: 6px;
+    }
+
+    /* Nav pill */
+    .nav-pill {
+      display: inline-flex; align-items: center; gap: 2px;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
+      border: 1px solid var(--g200); border-radius: 9999px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      padding: 6px 8px 6px 16px;
+      font-family: var(--font);
+    }
+    .nav-logo {
+      width: 26px; height: 26px; background: var(--black); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-right: 6px; flex-shrink: 0;
+    }
+    .nav-logo span { color: var(--white); font-weight: 800; font-size: 11px; }
+    .nav-link {
+      font-size: 13px; font-weight: 500; color: var(--g600);
+      padding: 6px 12px; border-radius: 9999px; cursor: pointer;
+      background: none; border: none; font-family: var(--font);
+      transition: all 150ms;
+    }
+    .nav-link:hover, .nav-link.active { background: var(--g100); color: var(--black); }
+    .nav-cta {
+      font-size: 13px; font-weight: 600; color: var(--white);
+      background: var(--black); border: none; padding: 7px 16px;
+      border-radius: 9999px; cursor: pointer; margin-left: 4px;
+      font-family: var(--font);
+    }
+
+    /* Card component */
+    .service-card {
+      background: var(--white); border: 1px solid var(--g200);
+      border-radius: 20px; padding: 32px;
+      box-shadow: var(--shadow-md);
+      transition: box-shadow 200ms, transform 200ms; cursor: default;
+    }
+    .service-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+
+    /* Testimonial */
+    .testimonial-card {
+      background: var(--white); border: 1px solid var(--g200);
+      border-radius: 20px; padding: 32px;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Stat card */
+    .stat-card {
+      background: var(--g900); border: 1px solid var(--g800);
+      border-radius: 16px; padding: 24px 28px;
+    }
+
+    /* ── VOICE & TONE ── */
+    .vt-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .vt-card {
+      border-radius: 12px; padding: 20px 22px;
+    }
+    .vt-do { background: var(--white); border: 1.5px solid var(--g200); }
+    .vt-dont { background: var(--g50); border: 1.5px solid var(--g200); }
+    .vt-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .vt-do .vt-label { color: var(--black); }
+    .vt-dont .vt-label { color: var(--g400); }
+    .vt-item { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
+    .vt-icon { font-size: 13px; margin-top: 1px; flex-shrink: 0; }
+    .vt-text { font-size: 14px; line-height: 1.5; }
+    .vt-do .vt-text { color: var(--g700); }
+    .vt-dont .vt-text { color: var(--g500); }
+
+    /* ── LOGO SECTION ── */
+    .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .logo-cell {
+      border-radius: 16px; padding: 40px 24px;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 20px;
+    }
+    .logo-cell-light { background: var(--white); border: 1px solid var(--g200); }
+    .logo-cell-muted { background: var(--g50); border: 1px solid var(--g200); }
+    .logo-cell-dark { background: var(--black); }
+    .logo-label { font-size: 11px; color: var(--g400); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+
+    /* Logomark variants */
+    .lm { display: flex; align-items: center; justify-content: center; }
+    .lm-mark {
+      display: flex; align-items: center; justify-content: center;
+      background: var(--black);
+    }
+    .lm-mark span { color: var(--white); font-weight: 800; letter-spacing: -0.04em; }
+    .lm-word { font-weight: 700; color: var(--black); letter-spacing: -0.02em; }
+    .lm-word-inv { font-weight: 700; color: var(--white); letter-spacing: -0.02em; }
+    .lm-mark-inv { background: var(--white); }
+    .lm-mark-inv span { color: var(--black); }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--g200); margin: 32px 0; }
+
+    /* ── ANNOTATION ── */
+    .annotation { font-size: 12px; color: var(--g500); margin-top: 8px; line-height: 1.5; }
+    .mono { font-family: 'Courier New', monospace; }
+
+    /* ── PATTERN DEMO ── */
+    .pattern-cell {
+      border-radius: 16px; height: 120px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Tweaks panel */
+    #tweaks-panel {
+      display: none;
+      position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+      background: var(--white); border: 1px solid var(--g200);
+      border-radius: 16px; box-shadow: var(--shadow-lg);
+      padding: 20px 22px; width: 220px; font-family: var(--font);
+    }
+    #tweaks-panel.open { display: block; }
+    .tweak-title { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g500); margin-bottom: 16px; }
+    .tweak-row { margin-bottom: 14px; }
+    .tweak-label { font-size: 12px; font-weight: 600; color: var(--g700); margin-bottom: 6px; display: block; }
+    .tweak-opts { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tweak-opt {
+      font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 9999px;
+      border: 1.5px solid var(--g200); background: var(--white); color: var(--g600); cursor: pointer; transition: all 150ms;
+      font-family: var(--font);
+    }
+    .tweak-opt.active { background: var(--black); color: var(--white); border-color: var(--black); }
+
+    @media (max-width: 720px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .logo-grid, .vt-row { grid-template-columns: 1fr 1fr; }
+      .shadow-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- COVER -->
+    <div id="cover">
+      <div id="cover-dot-grid"></div>
+      <div class="cover-logo">
+        <div class="cover-logomark"><span>S</span></div>
+        <span class="cover-wordmark">Salt Development</span>
+      </div>
+      <div class="cover-title">Brand Kit</div>
+      <div class="cover-subtitle">Visual identity, design tokens &amp; component reference</div>
+      <div class="cover-meta">
+        <div class="cover-meta-item">
+          <span class="meta-label">Version</span>
+          <span class="meta-val">1.0</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="meta-label">Updated</span>
+          <span class="meta-val">April 2026</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="meta-label">Typeface</span>
+          <span class="meta-val">Inter</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="meta-label">Palette</span>
+          <span class="meta-val">Black &amp; white</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 01 LOGO ══ -->
+    <div class="chapter">
+      <span class="chapter-num">01</span>
+      <span class="chapter-title">Logo &amp; Wordmark</span>
+    </div>
+
+    <div class="logo-grid" style="margin-bottom:24px;">
+      <!-- Light bg: horizontal lockup -->
+      <div class="logo-cell logo-cell-light">
+        <div class="lm" style="gap:12px; align-items:center; flex-direction:row;">
+          <div class="lm-mark" style="width:40px;height:40px;border-radius:10px;">
+            <span style="font-size:20px;">S</span>
+          </div>
+          <div class="lm-word" style="font-size:18px;">Salt Development</div>
+        </div>
+        <div class="logo-label">Horizontal lockup — light</div>
+      </div>
+
+      <!-- Muted bg: mark only -->
+      <div class="logo-cell logo-cell-muted">
+        <div class="lm-mark" style="width:64px;height:64px;border-radius:16px;">
+          <span style="font-size:32px;">S</span>
+        </div>
+        <div class="logo-label">Logomark — standalone</div>
+      </div>
+
+      <!-- Dark bg -->
+      <div class="logo-cell logo-cell-dark">
+        <div class="lm" style="gap:12px; align-items:center; flex-direction:row;">
+          <div class="lm-mark lm-mark-inv" style="width:40px;height:40px;border-radius:10px;">
+            <span style="font-size:20px;">S</span>
+          </div>
+          <div class="lm-word-inv" style="font-size:18px;">Salt Development</div>
+        </div>
+        <div class="logo-label" style="color:var(--g600);">Horizontal lockup — dark</div>
+      </div>
+    </div>
+
+    <!-- Pill nav variant -->
+    <div class="card" style="margin-bottom:16px;">
+      <div class="label">Nav pill variant</div>
+      <div style="display:flex;justify-content:center;padding:16px 0;">
+        <div class="nav-pill">
+          <div class="nav-logo"><span>S</span></div>
+          <button class="nav-link active">Services</button>
+          <button class="nav-link">Work</button>
+          <button class="nav-link">About</button>
+          <button class="nav-link">Contact</button>
+          <button class="nav-cta">Get started</button>
+        </div>
+      </div>
+      <p class="annotation">The pill nav uses a circular logomark. Background: <span class="mono">rgba(255,255,255,0.92)</span> + <span class="mono">backdrop-filter: blur(16px)</span>.</p>
+    </div>
+
+    <div class="card">
+      <div class="label">Construction rules</div>
+      <div class="grid-3" style="margin-top:8px;">
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:6px;">Clear space</div>
+          <div style="font-size:13px;color:var(--g600);line-height:1.6;">Maintain clear space equal to the height of the "S" mark on all sides. Never crowd the logo.</div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:6px;">Minimum size</div>
+          <div style="font-size:13px;color:var(--g600);line-height:1.6;">Standalone mark: 24px minimum. Horizontal lockup: 120px minimum width. Below this, use mark only.</div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:6px;">What to avoid</div>
+          <div style="font-size:13px;color:var(--g600);line-height:1.6;">Do not recolour, stretch, add drop shadows, or place on busy backgrounds that reduce contrast.</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ══ 02 COLOR ══ -->
+    <div class="chapter">
+      <span class="chapter-num">02</span>
+      <span class="chapter-title">Color Palette</span>
+    </div>
+
+    <!-- Full scale strip -->
+    <div class="card" style="margin-bottom:20px;">
+      <div class="label" style="margin-bottom:16px;">Neutral scale</div>
+      <div class="swatch-row" style="margin-bottom:16px;">
+        <div class="swatch" style="background:#FFFFFF;border:1px solid #E0E0E0;"></div>
+        <div class="swatch" style="background:#FAFAFA;"></div>
+        <div class="swatch" style="background:#F8F8F8;"></div>
+        <div class="swatch" style="background:#F0F0F0;"></div>
+        <div class="swatch" style="background:#E0E0E0;"></div>
+        <div class="swatch" style="background:#CCCCCC;"></div>
+        <div class="swatch" style="background:#AAAAAA;"></div>
+        <div class="swatch" style="background:#888888;"></div>
+        <div class="swatch" style="background:#666666;"></div>
+        <div class="swatch" style="background:#444444;"></div>
+        <div class="swatch" style="background:#2A2A2A;"></div>
+        <div class="swatch" style="background:#1A1A1A;"></div>
+        <div class="swatch" style="background:#111111;"></div>
+      </div>
+      <div class="swatch-grid">
+        <div class="swatch-item"><div class="swatch-block" style="background:#FFFFFF;border:1px solid #E0E0E0;"></div><div class="swatch-name">White</div><div class="swatch-hex">#FFFFFF</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:#FAFAFA;"></div><div class="swatch-name">Gray 25</div><div class="swatch-hex">#FAFAFA</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:#F8F8F8;"></div><div class="swatch-name">Gray 50</div><div class="swatch-hex">#F8F8F8</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:#F0F0F0;"></div><div class="swatch-name">Gray 100</div><div class="swatch-hex">#F0F0F0</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:#E0E0E0;"></div><div class="swatch-name">Gray 200</div><div class="swatch-hex">#E0E0E0</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:#CCCCCC;"></div><div class="swatch-name">Gray 300</div><div class="swatch-hex">#CCCCCC</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:#AAAAAA;"></div><div class="swatch-name">Gray 400</div><div class="swatch-hex">#AAAAAA</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:#888888;"></div><div class="swatch-name">Gray 500</div><div class="swatch-hex">#888888</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:#666666;"></div><div class="swatch-name">Gray 600</div><div class="swatch-hex">#666666</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:#444444;"></div><div class="swatch-name">Gray 700</div><div class="swatch-hex">#444444</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:#2A2A2A;"></div><div class="swatch-name">Gray 800</div><div class="swatch-hex">#2A2A2A</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:#1A1A1A;"></div><div class="swatch-name">Gray 900</div><div class="swatch-hex">#1A1A1A</div></div>
+        <div class="swatch-item"><div class="swatch-block" style="background:#111111;"></div><div class="swatch-name">Black</div><div class="swatch-hex">#111111</div></div>
+      </div>
+    </div>
+
+    <!-- Semantic roles -->
+    <div class="grid-2" style="margin-bottom:20px;">
+      <div class="card">
+        <div class="label" style="margin-bottom:16px;">Semantic — background</div>
+        <div class="stack" style="gap:10px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:8px;background:#FFFFFF;border:1px solid #E0E0E0;flex-shrink:0;"></div>
+            <div><div style="font-size:12px;font-weight:600;color:var(--black);">bg-base</div><div class="mono" style="font-size:11px;color:var(--g500);">#FFFFFF — primary page background</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:8px;background:#F8F8F8;border:1px solid #E0E0E0;flex-shrink:0;"></div>
+            <div><div style="font-size:12px;font-weight:600;color:var(--black);">bg-subtle</div><div class="mono" style="font-size:11px;color:var(--g500);">#F8F8F8 — section alternation</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:8px;background:#F0F0F0;border:1px solid #E0E0E0;flex-shrink:0;"></div>
+            <div><div style="font-size:12px;font-weight:600;color:var(--black);">bg-muted</div><div class="mono" style="font-size:11px;color:var(--g500);">#F0F0F0 — input, hover states</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:8px;background:#111111;flex-shrink:0;"></div>
+            <div><div style="font-size:12px;font-weight:600;color:var(--black);">bg-inverse</div><div class="mono" style="font-size:11px;color:var(--g500);">#111111 — hero, CTA sections</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="label" style="margin-bottom:16px;">Semantic — foreground</div>
+        <div class="stack" style="gap:10px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:8px;background:#111111;flex-shrink:0;"></div>
+            <div><div style="font-size:12px;font-weight:600;color:var(--black);">fg-primary</div><div class="mono" style="font-size:11px;color:var(--g500);">#111111 — headings, body</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:8px;background:#444444;flex-shrink:0;"></div>
+            <div><div style="font-size:12px;font-weight:600;color:var(--black);">fg-secondary</div><div class="mono" style="font-size:11px;color:var(--g500);">#444444 — body text, descriptions</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:8px;background:#888888;flex-shrink:0;"></div>
+            <div><div style="font-size:12px;font-weight:600;color:var(--black);">fg-tertiary</div><div class="mono" style="font-size:11px;color:var(--g500);">#888888 — captions, labels</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:40px;height:40px;border-radius:8px;background:#FFFFFF;border:1px solid #E0E0E0;flex-shrink:0;"></div>
+            <div><div style="font-size:12px;font-weight:600;color:var(--black);">fg-inverse</div><div class="mono" style="font-size:11px;color:var(--g500);">#FFFFFF — text on dark bg</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label" style="margin-bottom:16px;">In use — dark section</div>
+      <div style="background:var(--black);border-radius:12px;padding:40px;display:flex;flex-direction:column;gap:16px;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--g500);">Results</div>
+        <div style="font-size:36px;font-weight:300;color:var(--white);letter-spacing:-0.02em;line-height:1.1;">+112%<br>organic traffic.</div>
+        <div style="font-size:15px;color:var(--g500);line-height:1.6;max-width:380px;">We build fast, conversion-focused websites and pair them with SEO that actually moves the needle.</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;">
+          <button class="btn btn-inverse btn-sm">Start a project</button>
+          <button class="btn btn-sm" style="background:transparent;color:var(--g400);border:1.5px solid var(--g800);padding:7px 18px;border-radius:9999px;font-size:12px;font-weight:600;cursor:pointer;">See our work</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ══ 03 TYPOGRAPHY ══ -->
+    <div class="chapter">
+      <span class="chapter-num">03</span>
+      <span class="chapter-title">Typography</span>
+    </div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <div class="label" style="margin-bottom:4px;">Typeface</div>
+      <div style="font-size:48px;font-weight:700;color:var(--black);letter-spacing:-0.03em;line-height:1;">Inter</div>
+      <div style="font-size:14px;color:var(--g500);margin-top:8px;margin-bottom:28px;">Google Fonts / self-hosted webfont · weights 300–800</div>
+
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:16px;">
+        <div>
+          <div class="annotation" style="margin-bottom:8px;">300</div>
+          <div style="font-size:22px;font-weight:300;color:var(--black);">Aa</div>
+        </div>
+        <div>
+          <div class="annotation" style="margin-bottom:8px;">400</div>
+          <div style="font-size:22px;font-weight:400;color:var(--black);">Aa</div>
+        </div>
+        <div>
+          <div class="annotation" style="margin-bottom:8px;">500</div>
+          <div style="font-size:22px;font-weight:500;color:var(--black);">Aa</div>
+        </div>
+        <div>
+          <div class="annotation" style="margin-bottom:8px;">600</div>
+          <div style="font-size:22px;font-weight:600;color:var(--black);">Aa</div>
+        </div>
+        <div>
+          <div class="annotation" style="margin-bottom:8px;">700</div>
+          <div style="font-size:22px;font-weight:700;color:var(--black);">Aa</div>
+        </div>
+        <div>
+          <div class="annotation" style="margin-bottom:8px;">800</div>
+          <div style="font-size:22px;font-weight:800;color:var(--black);">Aa</div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px;padding:20px;background:var(--g50);border-radius:10px;">
+        <div class="annotation" style="margin-bottom:10px;">Full character set</div>
+        <div style="font-size:15px;font-weight:400;color:var(--g700);line-height:1.8;letter-spacing:0.01em;">
+          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+          abcdefghijklmnopqrstuvwxyz<br>
+          0123456789 !@#$%&amp;*()—.,?'
+        </div>
+      </div>
+    </div>
+
+    <!-- Type scale -->
+    <div class="stack" style="gap:8px;margin-bottom:20px;">
+      <div class="type-specimen">
+        <div class="type-specimen-meta">
+          <div class="type-meta-role">Display</div>
+          <div class="type-meta-spec">68px / 800<br>tracking −0.03em<br>leading 1.15</div>
+        </div>
+        <div class="type-divider"></div>
+        <div class="type-sample" style="font-size:clamp(36px,5vw,68px);font-weight:800;letter-spacing:-0.03em;line-height:1.15;color:var(--black);">Websites that rank.</div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-specimen-meta">
+          <div class="type-meta-role">H1</div>
+          <div class="type-meta-spec">52px / 700<br>tracking −0.03em<br>leading 1.15</div>
+        </div>
+        <div class="type-divider"></div>
+        <div class="type-sample" style="font-size:clamp(28px,4vw,52px);font-weight:700;letter-spacing:-0.03em;line-height:1.15;color:var(--black);">Businesses that grow.</div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-specimen-meta">
+          <div class="type-meta-role">H2</div>
+          <div class="type-meta-spec">40px / 700<br>tracking −0.015em<br>leading 1.3</div>
+        </div>
+        <div class="type-divider"></div>
+        <div class="type-sample" style="font-size:clamp(24px,3vw,40px);font-weight:700;letter-spacing:-0.015em;line-height:1.3;color:var(--black);">Everything your site needs to succeed</div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-specimen-meta">
+          <div class="type-meta-role">H3</div>
+          <div class="type-meta-spec">32px / 600<br>tracking −0.015em<br>leading 1.3</div>
+        </div>
+        <div class="type-divider"></div>
+        <div class="type-sample" style="font-size:clamp(20px,2.5vw,32px);font-weight:600;letter-spacing:-0.015em;line-height:1.3;color:var(--black);">Search engine optimisation</div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-specimen-meta">
+          <div class="type-meta-role">H4</div>
+          <div class="type-meta-spec">24px / 600<br>tracking 0<br>leading 1.5</div>
+        </div>
+        <div class="type-divider"></div>
+        <div class="type-sample" style="font-size:24px;font-weight:600;line-height:1.5;color:var(--black);">Local SEO targeting</div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-specimen-meta">
+          <div class="type-meta-role">Body large</div>
+          <div class="type-meta-spec">18px / 400<br>leading 1.65</div>
+        </div>
+        <div class="type-divider"></div>
+        <div class="type-sample" style="font-size:18px;font-weight:400;line-height:1.65;color:var(--g700);">We build fast, conversion-focused websites and pair them with SEO that actually moves the needle.</div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-specimen-meta">
+          <div class="type-meta-role">Body</div>
+          <div class="type-meta-spec">16px / 400<br>leading 1.65</div>
+        </div>
+        <div class="type-divider"></div>
+        <div class="type-sample" style="font-size:16px;font-weight:400;line-height:1.65;color:var(--g700);">A clear plan for your site and search presence — so you know exactly what's happening and why.</div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-specimen-meta">
+          <div class="type-meta-role">Body small</div>
+          <div class="type-meta-spec">13px / 400<br>leading 1.5</div>
+        </div>
+        <div class="type-divider"></div>
+        <div class="type-sample" style="font-size:13px;font-weight:400;line-height:1.5;color:var(--g600);">We'll be in touch within one business day.</div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-specimen-meta">
+          <div class="type-meta-role">Label</div>
+          <div class="type-meta-spec">11px / 700<br>tracking 0.1em<br>uppercase</div>
+        </div>
+        <div class="type-divider"></div>
+        <div class="type-sample" style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--g500);">Web development &amp; SEO</div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-specimen-meta">
+          <div class="type-meta-role">Mono / Code</div>
+          <div class="type-meta-spec">13px<br>Courier New</div>
+        </div>
+        <div class="type-divider"></div>
+        <div class="type-sample" style="font-size:13px;font-family:'Courier New',monospace;background:var(--g100);padding:8px 12px;border-radius:6px;color:var(--black);">border-radius: 12px;</div>
+      </div>
+    </div>
+
+
+    <!-- ══ 04 SPACING ══ -->
+    <div class="chapter">
+      <span class="chapter-num">04</span>
+      <span class="chapter-title">Spacing</span>
+    </div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <div class="label" style="margin-bottom:8px;">Base unit: 8px</div>
+      <div id="spacing-rows"></div>
+    </div>
+
+
+    <!-- ══ 05 RADII & SHADOWS ══ -->
+    <div class="chapter">
+      <span class="chapter-num">05</span>
+      <span class="chapter-title">Radii &amp; Shadows</span>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:20px;">
+      <div class="card">
+        <div class="label" style="margin-bottom:20px;">Corner radii</div>
+        <div class="radius-grid">
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:6px;"></div>
+            <div class="radius-label">sm</div>
+            <div class="radius-val">6px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:12px;"></div>
+            <div class="radius-label">md</div>
+            <div class="radius-val">12px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:20px;"></div>
+            <div class="radius-label">lg</div>
+            <div class="radius-val">20px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:32px;"></div>
+            <div class="radius-label">xl</div>
+            <div class="radius-val">32px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:9999px;width:80px;height:36px;"></div>
+            <div class="radius-label">full</div>
+            <div class="radius-val">9999px</div>
+          </div>
+        </div>
+        <p class="annotation" style="margin-top:20px;">Rounded corners are a brand signature. Cards use <span class="mono">20px</span>. Buttons &amp; pills use <span class="mono">9999px</span>. The logomark uses <span class="mono">10–12px</span>.</p>
+      </div>
+      <div class="card">
+        <div class="label" style="margin-bottom:20px;">Shadows</div>
+        <div class="shadow-row">
+          <div class="shadow-item">
+            <div class="shadow-box" style="box-shadow:0 1px 3px rgba(0,0,0,0.07);"></div>
+            <div class="shadow-label">sm</div>
+            <div class="shadow-val">0 1px 3px<br>rgba(0,0,0,0.07)</div>
+          </div>
+          <div class="shadow-item">
+            <div class="shadow-box" style="box-shadow:0 4px 16px rgba(0,0,0,0.08);"></div>
+            <div class="shadow-label">md</div>
+            <div class="shadow-val">0 4px 16px<br>rgba(0,0,0,0.08)</div>
+          </div>
+          <div class="shadow-item">
+            <div class="shadow-box" style="box-shadow:0 8px 32px rgba(0,0,0,0.10);"></div>
+            <div class="shadow-label">lg</div>
+            <div class="shadow-val">0 8px 32px<br>rgba(0,0,0,0.10)</div>
+          </div>
+          <div class="shadow-item">
+            <div class="shadow-box" style="box-shadow:0 16px 48px rgba(0,0,0,0.12);"></div>
+            <div class="shadow-label">xl</div>
+            <div class="shadow-val">0 16px 48px<br>rgba(0,0,0,0.12)</div>
+          </div>
+        </div>
+        <p class="annotation" style="margin-top:20px;">Shadows are soft and low-spread. Cards default to <span class="mono">md</span>; lift to <span class="mono">lg</span> on hover. No dramatic drop shadows.</p>
+      </div>
+    </div>
+
+
+    <!-- ══ 06 COMPONENTS ══ -->
+    <div class="chapter">
+      <span class="chapter-num">06</span>
+      <span class="chapter-title">Components</span>
+    </div>
+
+    <!-- Buttons -->
+    <div class="card" style="margin-bottom:20px;">
+      <div class="label" style="margin-bottom:20px;">Buttons</div>
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <!-- Variants -->
+        <div>
+          <div class="annotation" style="margin-bottom:12px;">Variants</div>
+          <div class="row">
+            <button class="btn btn-primary">Primary</button>
+            <button class="btn btn-secondary">Secondary</button>
+            <button class="btn btn-ghost">Ghost</button>
+          </div>
+        </div>
+        <!-- Sizes -->
+        <div>
+          <div class="annotation" style="margin-bottom:12px;">Sizes</div>
+          <div class="row" style="align-items:center;">
+            <button class="btn btn-primary btn-sm">Small</button>
+            <button class="btn btn-primary">Medium</button>
+            <button class="btn btn-primary btn-lg">Large</button>
+          </div>
+        </div>
+        <!-- Inverse (on dark) -->
+        <div style="background:var(--black);border-radius:12px;padding:24px 20px;">
+          <div class="annotation" style="margin-bottom:12px;color:var(--g600);">On dark background</div>
+          <div class="row">
+            <button class="btn btn-inverse">Primary (inverse)</button>
+            <button class="btn btn-sm" style="background:transparent;color:var(--g400);border:1.5px solid var(--g800);padding:11px 22px;border-radius:9999px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font);">Secondary (inverse)</button>
+          </div>
+        </div>
+        <!-- States -->
+        <div>
+          <div class="annotation" style="margin-bottom:12px;">States</div>
+          <div class="row">
+            <button class="btn btn-primary" style="opacity:1;">Default</button>
+            <button class="btn btn-primary" style="opacity:0.8;">Hover</button>
+            <button class="btn btn-primary" style="opacity:0.8;transform:scale(0.98);">Active</button>
+            <button class="btn btn-primary" style="opacity:0.38;cursor:not-allowed;" disabled>Disabled</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Badges -->
+    <div class="card" style="margin-bottom:20px;">
+      <div class="label" style="margin-bottom:16px;">Badges &amp; tags</div>
+      <div class="row">
+        <span class="badge badge-default">Web Dev</span>
+        <span class="badge badge-default">SEO</span>
+        <span class="badge badge-default">Strategy</span>
+        <span class="badge badge-dark">Web Dev + SEO</span>
+        <span class="badge badge-outline">In progress</span>
+      </div>
+      <p class="annotation" style="margin-top:12px;">Used to categorise services, case study types, and nav labels. Always sentence-case internally, uppercase in the rendered badge.</p>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid-2" style="margin-bottom:20px;">
+      <div class="service-card">
+        <span class="badge badge-default" style="margin-bottom:18px;display:inline-flex;">SEO</span>
+        <div style="font-size:18px;font-weight:700;color:var(--black);letter-spacing:-0.01em;margin-bottom:10px;">Search engine optimisation</div>
+        <div style="font-size:14px;color:var(--g600);line-height:1.65;">On-page, technical, and local SEO. We focus on the changes that move rankings.</div>
+      </div>
+      <div class="testimonial-card">
+        <div style="font-size:28px;color:var(--g300);margin-bottom:12px;line-height:1;">&ldquo;</div>
+        <p style="font-size:15px;color:var(--g700);line-height:1.65;margin:0 0 20px;font-style:italic;">Our enquiries doubled within three months of the new site going live.</p>
+        <div style="font-size:13px;font-weight:600;color:var(--black);">Sarah M.</div>
+        <div style="font-size:12px;color:var(--g500);">Owner, local plumbing business</div>
+      </div>
+    </div>
+
+    <!-- Stat cards (dark) -->
+    <div class="grid-3" style="margin-bottom:20px;">
+      <div class="stat-card">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--g500);margin-bottom:10px;">Organic traffic</div>
+        <div style="font-size:36px;font-weight:300;color:var(--white);letter-spacing:-0.02em;line-height:1;">+112%</div>
+        <div style="font-size:12px;color:var(--g600);margin-top:6px;">in 4 months</div>
+      </div>
+      <div class="stat-card">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--g500);margin-bottom:10px;">Page speed</div>
+        <div style="font-size:36px;font-weight:300;color:var(--white);letter-spacing:-0.02em;line-height:1;">98<span style="font-size:18px;color:var(--g500);">/100</span></div>
+        <div style="font-size:12px;color:var(--g600);margin-top:6px;">Lighthouse score</div>
+      </div>
+      <div class="stat-card">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--g500);margin-bottom:10px;">Conversions</div>
+        <div style="font-size:36px;font-weight:300;color:var(--white);letter-spacing:-0.02em;line-height:1;">3×</div>
+        <div style="font-size:12px;color:var(--g600);margin-top:6px;">contact form submissions</div>
+      </div>
+    </div>
+
+    <!-- Forms -->
+    <div class="card" style="margin-bottom:20px;">
+      <div class="label" style="margin-bottom:20px;">Form inputs</div>
+      <div style="max-width:480px;display:flex;flex-direction:column;gap:16px;">
+        <div>
+          <label class="form-label">Your name</label>
+          <input class="input-demo" placeholder="Jane Smith" type="text">
+        </div>
+        <div>
+          <label class="form-label">Email address</label>
+          <input class="input-demo" placeholder="you@example.com" type="email">
+        </div>
+        <div>
+          <label class="form-label">Service interest</label>
+          <select class="input-demo" style="cursor:pointer;appearance:none;">
+            <option>Select a service…</option>
+            <option>Web development</option>
+            <option>SEO</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label">Tell us about your goals</label>
+          <textarea class="input-demo" placeholder="We want to rank higher for…" rows="3"></textarea>
+        </div>
+        <div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;border-radius:10px;">Send message</button>
+        </div>
+      </div>
+      <p class="annotation" style="margin-top:16px;">Default border: <span class="mono">1.5px solid #E0E0E0</span>. Focus border: <span class="mono">1.5px solid #111111</span>. Border radius: <span class="mono">10px</span>.</p>
+    </div>
+
+
+    <!-- ══ 07 ANIMATION ══ -->
+    <div class="chapter">
+      <span class="chapter-num">07</span>
+      <span class="chapter-title">Motion &amp; Animation</span>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:20px;">
+      <div class="card">
+        <div class="label" style="margin-bottom:16px;">Timing tokens</div>
+        <div class="stack" style="gap:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--g100);">
+            <div style="font-size:13px;font-weight:600;color:var(--black);">transition-fast</div>
+            <div class="mono" style="font-size:12px;color:var(--g500);">100ms ease</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--g100);">
+            <div style="font-size:13px;font-weight:600;color:var(--black);">transition-base</div>
+            <div class="mono" style="font-size:12px;color:var(--g500);">200ms ease</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;">
+            <div style="font-size:13px;font-weight:600;color:var(--black);">transition-slow</div>
+            <div class="mono" style="font-size:12px;color:var(--g500);">350ms ease</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="label" style="margin-bottom:16px;">Rules</div>
+        <div class="stack" style="gap:10px;">
+          <div style="display:flex;gap:10px;align-items:flex-start;">
+            <div style="width:5px;height:5px;border-radius:50%;background:var(--black);flex-shrink:0;margin-top:7px;"></div>
+            <div style="font-size:13px;color:var(--g700);line-height:1.6;"><strong style="color:var(--black);">Subtle &amp; purposeful.</strong> No bouncy, flashy, or purely decorative animation.</div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start;">
+            <div style="width:5px;height:5px;border-radius:50%;background:var(--black);flex-shrink:0;margin-top:7px;"></div>
+            <div style="font-size:13px;color:var(--g700);line-height:1.6;"><strong style="color:var(--black);">Hover lift.</strong> Cards: <span class="mono">translateY(-2px)</span> + shadow step-up at <span class="mono">200ms</span>.</div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start;">
+            <div style="width:5px;height:5px;border-radius:50%;background:var(--black);flex-shrink:0;margin-top:7px;"></div>
+            <div style="font-size:13px;color:var(--g700);line-height:1.6;"><strong style="color:var(--black);">Button press.</strong> <span class="mono">scale(0.98)</span> on active state.</div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start;">
+            <div style="width:5px;height:5px;border-radius:50%;background:var(--black);flex-shrink:0;margin-top:7px;"></div>
+            <div style="font-size:13px;color:var(--g700);line-height:1.6;"><strong style="color:var(--black);">No parallax, no spin.</strong> Avoid heavy motion effects.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ══ 08 ICONOGRAPHY ══ -->
+    <div class="chapter">
+      <span class="chapter-num">08</span>
+      <span class="chapter-title">Iconography</span>
+    </div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <div class="label" style="margin-bottom:16px;">Lucide Icons — recommended library</div>
+      <div id="icon-row" style="display:flex;gap:24px;flex-wrap:wrap;align-items:center;margin-bottom:20px;padding:24px;background:var(--g50);border-radius:12px;"></div>
+      <div class="grid-3">
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:6px;">Style</div>
+          <div style="font-size:13px;color:var(--g600);line-height:1.6;">Stroke-based, <span class="mono">stroke-width: 1.5</span>. No fill. Inherits text color.</div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:6px;">Sizes</div>
+          <div style="font-size:13px;color:var(--g600);line-height:1.6;">16px inline · 20px UI · 24px feature icons</div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--black);margin-bottom:6px;">No emoji</div>
+          <div style="font-size:13px;color:var(--g600);line-height:1.6;">Emoji are never used in place of icons or decorative elements.</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ══ 09 VOICE & TONE ══ -->
+    <div class="chapter">
+      <span class="chapter-num">09</span>
+      <span class="chapter-title">Voice &amp; Tone</span>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:20px;">
+      <div class="card">
+        <div class="label" style="margin-bottom:16px;">Principles</div>
+        <div class="stack" style="gap:14px;">
+          <div style="display:flex;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--g100);">
+            <div style="font-size:13px;font-weight:700;color:var(--black);min-width:120px;">Professional</div>
+            <div style="font-size:13px;color:var(--g600);line-height:1.6;">Authoritative but approachable. Never cold or robotic.</div>
+          </div>
+          <div style="display:flex;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--g100);">
+            <div style="font-size:13px;font-weight:700;color:var(--black);min-width:120px;">Plain language</div>
+            <div style="font-size:13px;color:var(--g600);line-height:1.6;">Technical terms used sparingly, only when they add clarity.</div>
+          </div>
+          <div style="display:flex;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--g100);">
+            <div style="font-size:13px;font-weight:700;color:var(--black);min-width:120px;">Direct</div>
+            <div style="font-size:13px;color:var(--g600);line-height:1.6;">Short sentences, active voice, no hedging.</div>
+          </div>
+          <div style="display:flex;gap:14px;">
+            <div style="font-size:13px;font-weight:700;color:var(--black);min-width:120px;">Outcomes first</div>
+            <div style="font-size:13px;color:var(--g600);line-height:1.6;">Talk about results for the client, not features of the service.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="label" style="margin-bottom:16px;">Pronouns &amp; casing</div>
+        <div class="stack" style="gap:14px;">
+          <div style="display:flex;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--g100);">
+            <div style="font-size:13px;font-weight:700;color:var(--black);min-width:120px;">We / our</div>
+            <div style="font-size:13px;color:var(--g600);line-height:1.6;">Refers to Salt Development. Conversational, not corporate.</div>
+          </div>
+          <div style="display:flex;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--g100);">
+            <div style="font-size:13px;font-weight:700;color:var(--black);min-width:120px;">You / your</div>
+            <div style="font-size:13px;color:var(--g600);line-height:1.6;">Refers to the client. Respectful but direct.</div>
+          </div>
+          <div style="display:flex;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--g100);">
+            <div style="font-size:13px;font-weight:700;color:var(--black);min-width:120px;">Sentence case</div>
+            <div style="font-size:13px;color:var(--g600);line-height:1.6;">Headings and body copy in sentence case. Not Title Case Everywhere.</div>
+          </div>
+          <div style="display:flex;gap:14px;">
+            <div style="font-size:13px;font-weight:700;color:var(--black);min-width:120px;">Brand name</div>
+            <div style="font-size:13px;color:var(--g600);line-height:1.6;"><strong>Salt Development</strong> — both words capitalised. Never "SALT".</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Do / Don't -->
+    <div class="vt-row">
+      <div class="vt-card vt-do">
+        <div class="vt-label">Do write</div>
+        <div class="vt-item"><span class="vt-icon" style="color:var(--black);">→</span><span class="vt-text">"We build websites that rank and convert."</span></div>
+        <div class="vt-item"><span class="vt-icon" style="color:var(--black);">→</span><span class="vt-text">"Your site should work as hard as you do."</span></div>
+        <div class="vt-item"><span class="vt-icon" style="color:var(--black);">→</span><span class="vt-text">"SEO that actually moves the needle — no guesswork, no fluff."</span></div>
+        <div class="vt-item"><span class="vt-icon" style="color:var(--black);">→</span><span class="vt-text">"Let's talk about what's holding your site back."</span></div>
+        <div class="vt-item"><span class="vt-icon" style="color:var(--black);">→</span><span class="vt-text">"A short call is all it takes to find out what your site needs."</span></div>
+      </div>
+      <div class="vt-card vt-dont">
+        <div class="vt-label">Avoid</div>
+        <div class="vt-item"><span class="vt-icon" style="color:var(--g400);">—</span><span class="vt-text">Jargon for its own sake: "synergistic digital ecosystems"</span></div>
+        <div class="vt-item"><span class="vt-icon" style="color:var(--g400);">—</span><span class="vt-text">Hedging: "we might be able to help possibly improve…"</span></div>
+        <div class="vt-item"><span class="vt-icon" style="color:var(--g400);">—</span><span class="vt-text">Overselling: "guaranteed #1 rankings in 30 days"</span></div>
+        <div class="vt-item"><span class="vt-icon" style="color:var(--g400);">—</span><span class="vt-text">All-caps brand name: SALT DEVELOPMENT</span></div>
+        <div class="vt-item"><span class="vt-icon" style="color:var(--g400);">—</span><span class="vt-text">Emoji as decoration or icons</span></div>
+      </div>
+    </div>
+
+
+    <!-- ══ 10 PATTERNS ══ -->
+    <div class="chapter">
+      <span class="chapter-num">10</span>
+      <span class="chapter-title">Layout &amp; Background Patterns</span>
+    </div>
+
+    <div class="grid-3" style="margin-bottom:20px;">
+      <div>
+        <div class="pattern-cell" style="background:var(--white);border:1px solid var(--g200);margin-bottom:8px;">
+          <div style="text-align:center;">
+            <div style="font-size:13px;font-weight:600;color:var(--black);">bg-base</div>
+            <div style="font-size:11px;color:var(--g500);">#FFFFFF</div>
+          </div>
+        </div>
+        <div class="annotation">Primary page background. Default for most sections.</div>
+      </div>
+      <div>
+        <div class="pattern-cell" style="background:var(--g50);border:1px solid var(--g200);margin-bottom:8px;">
+          <div style="text-align:center;">
+            <div style="font-size:13px;font-weight:600;color:var(--black);">bg-subtle</div>
+            <div style="font-size:11px;color:var(--g500);">#F8F8F8</div>
+          </div>
+        </div>
+        <div class="annotation">Alternating section bg. Services, testimonials, footer areas.</div>
+      </div>
+      <div>
+        <div class="pattern-cell" style="background:var(--black);margin-bottom:8px;">
+          <div style="text-align:center;">
+            <div style="font-size:13px;font-weight:600;color:var(--white);">bg-inverse</div>
+            <div style="font-size:11px;color:var(--g500);">#111111</div>
+          </div>
+        </div>
+        <div class="annotation">Hero sections and CTAs. High contrast, impactful. Max 2 dark sections per page.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <div class="label" style="margin-bottom:16px;">Dot grid texture (optional)</div>
+      <div style="border-radius:12px;overflow:hidden;position:relative;height:120px;background:var(--black);">
+        <div style="position:absolute;inset:0;background-image:radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);background-size:28px 28px;"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+          <div style="font-size:15px;font-weight:300;color:var(--white);letter-spacing:-0.01em;">Used on hero and dark sections only</div>
+        </div>
+      </div>
+      <p class="annotation" style="margin-top:12px;"><span class="mono">background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 28px 28px</span></p>
+    </div>
+
+    <div class="card">
+      <div class="label" style="margin-bottom:16px;">Layout tokens</div>
+      <div class="grid-3">
+        <div style="padding:16px 0;border-bottom:1px solid var(--g100);">
+          <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:4px;">Max content width</div>
+          <div class="mono" style="font-size:12px;color:var(--g500);">1200px</div>
+        </div>
+        <div style="padding:16px 0;border-bottom:1px solid var(--g100);">
+          <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:4px;">Section padding Y</div>
+          <div class="mono" style="font-size:12px;color:var(--g500);">96px</div>
+        </div>
+        <div style="padding:16px 0;border-bottom:1px solid var(--g100);">
+          <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:4px;">Content padding X</div>
+          <div class="mono" style="font-size:12px;color:var(--g500);">32px</div>
+        </div>
+        <div style="padding:16px 0;">
+          <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:4px;">Card padding</div>
+          <div class="mono" style="font-size:12px;color:var(--g500);">24–32px</div>
+        </div>
+        <div style="padding:16px 0;">
+          <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:4px;">Grid gap (cards)</div>
+          <div class="mono" style="font-size:12px;color:var(--g500);">20px</div>
+        </div>
+        <div style="padding:16px 0;">
+          <div style="font-size:12px;font-weight:600;color:var(--black);margin-bottom:4px;">Nav height</div>
+          <div class="mono" style="font-size:12px;color:var(--g500);">64px (bar) / auto (pill)</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /page -->
+
+  <!-- Tweaks panel -->
+  <div id="tweaks-panel">
+    <div class="tweak-title">Tweaks</div>
+    <div class="tweak-row">
+      <span class="tweak-label">Background tone</span>
+      <div class="tweak-opts">
+        <button class="tweak-opt active" onclick="setTweak('bg','white',this)">White</button>
+        <button class="tweak-opt" onclick="setTweak('bg','gray',this)">Gray</button>
+      </div>
+    </div>
+    <div class="tweak-row">
+      <span class="tweak-label">Type specimen</span>
+      <div class="tweak-opts">
+        <button class="tweak-opt active" onclick="setTweak('type','full',this)">All</button>
+        <button class="tweak-opt" onclick="setTweak('type','display',this)">Display</button>
+        <button class="tweak-opt" onclick="setTweak('type','body',this)">Body</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── Spacing rows ──
+    const spacingData = [
+      { token: '--space-1',  px: '4px',  label: 'space-1' },
+      { token: '--space-2',  px: '8px',  label: 'space-2' },
+      { token: '--space-3',  px: '12px', label: 'space-3' },
+      { token: '--space-4',  px: '16px', label: 'space-4' },
+      { token: '--space-5',  px: '20px', label: 'space-5' },
+      { token: '--space-6',  px: '24px', label: 'space-6' },
+      { token: '--space-8',  px: '32px', label: 'space-8' },
+      { token: '--space-10', px: '40px', label: 'space-10' },
+      { token: '--space-12', px: '48px', label: 'space-12' },
+      { token: '--space-16', px: '64px', label: 'space-16' },
+      { token: '--space-20', px: '80px', label: 'space-20' },
+      { token: '--space-24', px: '96px', label: 'space-24' },
+    ];
+
+    const spacingContainer = document.getElementById('spacing-rows');
+    spacingData.forEach(s => {
+      const row = document.createElement('div');
+      row.className = 'space-row';
+      row.innerHTML = `
+        <div class="space-label">${s.label}</div>
+        <div class="space-bar" style="width:${s.px};"></div>
+        <div class="space-val">${s.px}</div>
+      `;
+      spacingContainer.appendChild(row);
+    });
+
+    // ── Icons ──
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) {
+        const iconNames = ['globe', 'search', 'trending-up', 'layout-dashboard', 'check-circle', 'arrow-right', 'mail', 'phone', 'bar-chart-2', 'zap', 'star', 'users'];
+        const iconRow = document.getElementById('icon-row');
+        iconNames.forEach(name => {
+          const wrapper = document.createElement('div');
+          wrapper.style.cssText = 'display:flex;flex-direction:column;align-items:center;gap:8px;';
+          const iconEl = document.createElement('div');
+          iconEl.innerHTML = `<i data-lucide="${name}" style="width:24px;height:24px;stroke:#111111;stroke-width:1.5;"></i>`;
+          const label = document.createElement('div');
+          label.style.cssText = 'font-size:10px;color:#888;font-family:Courier New,monospace;';
+          label.textContent = name;
+          wrapper.appendChild(iconEl);
+          wrapper.appendChild(label);
+          iconRow.appendChild(wrapper);
+        });
+        lucide.createIcons();
+      }
+    });
+
+    // ── Tweaks ──
+    window.addEventListener('message', e => {
+      if (e.data?.type === '__activate_edit_mode') document.getElementById('tweaks-panel').classList.add('open');
+      if (e.data?.type === '__deactivate_edit_mode') document.getElementById('tweaks-panel').classList.remove('open');
+    });
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+    function setTweak(key, val, btn) {
+      btn.closest('.tweak-opts').querySelectorAll('.tweak-opt').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (key === 'bg') {
+        document.body.style.background = val === 'white' ? '#FFFFFF' : '#F8F8F8';
+      }
+      if (key === 'type') {
+        const all = document.querySelectorAll('.type-specimen');
+        all.forEach(el => {
+          const role = el.querySelector('.type-meta-role')?.textContent?.toLowerCase() || '';
+          if (val === 'full') { el.style.display = 'flex'; return; }
+          if (val === 'display') { el.style.display = ['display','h1','h2','h3','h4'].includes(role) ? 'flex' : 'none'; return; }
+          if (val === 'body') { el.style.display = role.includes('body') || role.includes('label') || role.includes('mono') || role.includes('caption') ? 'flex' : 'none'; return; }
+        });
+      }
+    }
+  </script>
+</body>
+</html>
