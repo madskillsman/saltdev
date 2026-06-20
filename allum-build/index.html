@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Allum Strategies | Front-Page SEO for Service Businesses</title>
+<meta name="description" content="Allum gets service businesses on the front page of Google. You don't pay until you rank. SEO, Google Business Profile, AI search, and websites. Book a call." />
+<link rel="canonical" href="https://allumstrategies.com/" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Allum Strategies | Front-Page SEO for Service Businesses" />
+<meta property="og:description" content="We get your business on the front page of Google. You don't pay until we do." />
+<meta property="og:url" content="https://allumstrategies.com/" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  /* ============================================================
+     TOKENS  (from design.md sections 5 to 7, hard constraints)
+     ============================================================ */
+  :root {
+    /* Base */
+    --color-bg:           #ffffff;
+    --color-text:         #101010;
+    --color-text-2:       #5E5C55;
+    --color-text-muted:   #9A9890;
+
+    /* Accent: Luxury Blue (one accent only) */
+    --color-accent:       #03324f;
+    --color-accent-hover: #0b4a72;
+    --color-accent-pale:  #DCE8F2;
+
+    /* Buttons */
+    --color-btn:          var(--color-accent);
+    --color-btn-hover:    var(--color-accent-hover);
+
+    /* Neutrals (warm) */
+    --color-surface:      #F0EEE8;
+    --color-surface-2:    #EAE7DF;
+    --color-border:       #E2DFD7;
+
+    /* Accent section */
+    --color-bg-invert:    #03324f;
+    --color-text-invert:  #ffffff;
+
+    /* Type */
+    --font-sans: "Hanken Grotesk", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --fw-regular: 400; --fw-medium: 500; --fw-semibold: 600; --fw-bold: 700;
+    --fs-display: 3.5rem; --fs-h1: 2.5rem; --fs-h2: 2rem; --fs-h3: 1.5rem;
+    --fs-h4: 1.25rem; --fs-body-l: 1.125rem; --fs-body: 1rem;
+    --fs-small: 0.875rem; --fs-label: 0.75rem;
+
+    /* Space (4px base) */
+    --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-6:24px;
+    --space-8:32px; --space-12:48px; --space-16:64px; --space-24:96px; --space-32:128px;
+
+    /* Shape */
+    --radius-sm:10px; --radius-md:16px; --radius-lg:24px; --radius-chip:14px; --radius-pill:999px;
+    --border-hairline: 1px solid var(--color-border);
+    --shadow-soft: 0 1px 2px rgba(16,16,16,.04), 0 8px 28px rgba(16,16,16,.06);
+
+    --maxw: 1140px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* ============================================================ RESET */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1,h2,h3,h4 { font-weight: var(--fw-regular); text-transform: capitalize; letter-spacing: -0.02em; line-height: 1.12; color: var(--color-text); }
+  h3,h4 { letter-spacing: -0.01em; }
+  a { color: inherit; text-decoration: none; }
+  svg { display: block; }
+  img { display: block; max-width: 100%; }
+  ::selection { background: var(--color-accent); color: #fff; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+  section { padding: 96px 0; }
+
+  /* Eyebrow / label */
+  .eyebrow {
+    display: inline-block; font-size: var(--fs-label); font-weight: var(--fw-medium);
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-accent);
+    margin-bottom: var(--space-4);
+  }
+
+  /* Section heading rhythm */
+  .sec-head { max-width: 680px; margin-bottom: var(--space-12); }
+  .sec-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+  .sec-head h2 { font-size: var(--fs-h2); margin-bottom: var(--space-4); }
+  .sec-head .lead { font-size: var(--fs-body-l); color: var(--color-text-2); }
+
+  .lead { font-size: var(--fs-body-l); color: var(--color-text-2); }
+  .muted { color: var(--color-text-2); }
+
+  /* ============================================================ BUTTONS */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    font-family: var(--font-sans); font-weight: var(--fw-semibold); font-size: var(--fs-body);
+    line-height: 1; padding: 15px 28px; border-radius: var(--radius-pill);
+    border: 1px solid transparent; cursor: pointer; white-space: nowrap;
+    transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease), transform .2s var(--ease);
+  }
+  .btn:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 3px; }
+  .btn-primary { background: var(--color-btn); color: #fff; }
+  .btn-primary:hover { background: var(--color-btn-hover); }
+  .btn-secondary { background: transparent; color: var(--color-text); border-color: var(--color-border); }
+  .btn-secondary:hover { background: var(--color-surface); }
+  .btn-on-accent { background: #fff; color: var(--color-accent); }
+  .btn-on-accent:hover { background: var(--color-accent-pale); }
+  .btn svg { width: 18px; height: 18px; }
+  .btn-sm { padding: 11px 20px; font-size: var(--fs-small); }
+
+  /* link with arrow */
+  .arrow-link { display: inline-flex; align-items: center; gap: 7px; color: var(--color-accent); font-weight: var(--fw-medium); }
+  .arrow-link svg { width: 16px; height: 16px; transition: transform .2s var(--ease); }
+  .arrow-link:hover { text-decoration: underline; }
+  .arrow-link:hover svg { transform: translateX(3px); }
+
+  /* icon chip */
+  .chip {
+    width: 48px; height: 48px; border-radius: var(--radius-chip);
+    background: var(--color-accent-pale); color: var(--color-accent);
+    display: grid; place-items: center; flex-shrink: 0;
+  }
+  .chip svg { width: 24px; height: 24px; stroke-width: 1.75; }
+
+  /* ============================================================ HEADER */
+  header.site {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s var(--ease), background .3s var(--ease);
+  }
+  header.site.scrolled { border-color: var(--color-border); background: rgba(255,255,255,0.94); }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 74px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; }
+  .brand .mark { width: 34px; height: 34px; flex-shrink: 0; }
+  .brand .wm { font-weight: var(--fw-semibold); font-size: 22px; letter-spacing: -0.03em; color: var(--color-text); }
+  .nav-links { display: flex; align-items: center; gap: 34px; }
+  .nav-links a { font-size: var(--fs-small); font-weight: var(--fw-medium); color: var(--color-text-2); transition: color .2s; }
+  .nav-links a:hover { color: var(--color-text); }
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+  .menu-btn { display: none; background: none; border: 0; cursor: pointer; color: var(--color-text); padding: 8px; }
+
+  /* ============================================================ HERO */
+  .hero { padding: 88px 0 96px; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 64px; align-items: center; }
+  .hero h1 { font-size: var(--fs-display); line-height: 1.05; margin-bottom: var(--space-6); max-width: 16ch; }
+  .hero .support { font-size: var(--fs-h4); color: var(--color-text); margin-bottom: var(--space-4); text-transform: none; }
+  .hero .subtext { font-size: var(--fs-body-l); color: var(--color-text-2); max-width: 52ch; margin-bottom: var(--space-8); }
+  .hero-cta { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .hero-cta .note { font-size: var(--fs-small); color: var(--color-text-muted); max-width: 22ch; }
+
+  /* calm ranking visual (brand colors, no SaaS dashboard) */
+  .rank-visual {
+    background: var(--color-bg); border: var(--border-hairline); border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft); padding: 26px; }
+  .rank-visual .rv-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-6); }
+  .rank-visual .rv-head .t { font-size: var(--fs-small); color: var(--color-text-2); text-transform: none; letter-spacing: 0; }
+  .rank-visual .rv-head .q { font-size: var(--fs-small); color: var(--color-text); font-weight: var(--fw-medium); }
+  .serp { list-style: none; display: grid; gap: 10px; }
+  .serp li {
+    display: flex; align-items: center; gap: 14px; padding: 14px 16px;
+    border: var(--border-hairline); border-radius: var(--radius-md); background: var(--color-bg);
+  }
+  .serp li .pos { font-size: var(--fs-small); color: var(--color-text-muted); width: 18px; flex-shrink: 0; }
+  .serp li .bars { flex: 1; display: grid; gap: 6px; }
+  .serp li .bars span { height: 7px; border-radius: 99px; background: var(--color-surface-2); display: block; }
+  .serp li .bars span.short { width: 55%; }
+  .serp li.you {
+    background: var(--color-accent-pale); border-color: transparent; box-shadow: inset 0 0 0 1px rgba(3,50,79,0.18);
+  }
+  .serp li.you .pos { color: var(--color-accent); font-weight: var(--fw-semibold); }
+  .serp li.you .bars span { background: rgba(3,50,79,0.30); }
+  .serp li.you .tag { font-size: var(--fs-label); letter-spacing: 0.06em; text-transform: uppercase; font-weight: var(--fw-medium); color: var(--color-accent); background: #fff; padding: 4px 10px; border-radius: var(--radius-pill); flex-shrink: 0; }
+
+  /* ============================================================ RESULTS */
+  .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .result-card {
+    background: var(--color-bg); border: var(--border-hairline); border-radius: var(--radius-lg);
+    padding: 32px; transition: box-shadow .25s var(--ease), transform .25s var(--ease);
+  }
+  .result-card:hover { box-shadow: var(--shadow-soft); transform: translateY(-3px); }
+  .result-card .who { font-size: var(--fs-label); letter-spacing: 0.06em; text-transform: uppercase; font-weight: var(--fw-medium); color: var(--color-accent); margin-bottom: var(--space-4); }
+  .result-card .metric { font-size: var(--fs-h3); line-height: 1.2; margin-bottom: var(--space-3); }
+  .result-card .ph { color: var(--color-text-muted); }
+  .result-card .secondary { font-size: var(--fs-body); color: var(--color-text-2); padding-top: var(--space-4); border-top: var(--border-hairline); margin-top: var(--space-4); }
+  .result-card .label { font-size: var(--fs-small); color: var(--color-text-muted); margin-top: var(--space-3); }
+
+  .trust-row { display: flex; flex-wrap: wrap; gap: 14px 32px; justify-content: center; margin-top: var(--space-12); }
+  .trust-row .tm { display: inline-flex; align-items: center; gap: 9px; font-size: var(--fs-small); color: var(--color-text-2); }
+  .trust-row .tm svg { width: 18px; height: 18px; color: var(--color-accent); stroke-width: 1.75; }
+
+  /* ============================================================ STEPS */
+  .steps { display: grid; gap: 0; }
+  .step {
+    display: grid; grid-template-columns: 88px 1fr; gap: 24px; align-items: start;
+    padding: 36px 0; border-top: var(--border-hairline);
+  }
+  .step:last-child { border-bottom: var(--border-hairline); }
+  .step .num { font-size: var(--fs-h2); color: var(--color-accent); line-height: 1; }
+  .step h3 { font-size: var(--fs-h3); margin-bottom: var(--space-3); }
+  .step p { color: var(--color-text-2); max-width: 64ch; }
+  .steps-cta { margin-top: var(--space-12); display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .steps-cta .q { font-size: var(--fs-body-l); color: var(--color-text); }
+
+  /* ============================================================ SERVICES */
+  .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .svc-card {
+    display: flex; flex-direction: column; gap: var(--space-4);
+    background: var(--color-bg); border: var(--border-hairline); border-radius: var(--radius-lg);
+    padding: 32px; transition: box-shadow .25s var(--ease), transform .25s var(--ease), border-color .25s var(--ease);
+  }
+  .svc-card:hover { box-shadow: var(--shadow-soft); transform: translateY(-3px); border-color: #d6d2c8; }
+  .svc-card h3 { font-size: var(--fs-h4); }
+  .svc-card p { color: var(--color-text-2); }
+  .svc-card .foot { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: var(--space-4); gap: 16px; }
+  .svc-card .price { font-size: var(--fs-label); letter-spacing: 0.06em; text-transform: uppercase; font-weight: var(--fw-medium); color: var(--color-text); }
+  .svc-card .price small { display: block; text-transform: none; letter-spacing: 0; color: var(--color-text-muted); font-weight: var(--fw-regular); margin-top: 4px; }
+
+  /* ============================================================ FOUNDER */
+  .founder-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: center; }
+  .founder-photo {
+    aspect-ratio: 4 / 5; border-radius: var(--radius-lg); background: var(--color-surface-2);
+    border: var(--border-hairline); display: grid; place-items: center; text-align: center; padding: 24px;
+  }
+  .founder-photo .ph { color: var(--color-text-muted); font-size: var(--fs-small); }
+  .founder-body p { color: var(--color-text-2); margin-bottom: var(--space-4); max-width: 60ch; }
+  .founder-body p:first-of-type { color: var(--color-text); }
+  .pull {
+    border-left: 2px solid var(--color-accent); padding: 6px 0 6px 22px; margin: var(--space-8) 0;
+    font-size: var(--fs-h4); line-height: 1.4; color: var(--color-text); text-transform: none;
+  }
+
+  /* ============================================================ FINAL CTA (accent band) */
+  .cta-band { background: var(--color-bg-invert); color: var(--color-text-invert); }
+  .cta-band .inner { text-align: center; max-width: 720px; margin: 0 auto; }
+  .cta-band .eyebrow { color: var(--color-accent-pale); }
+  .cta-band h2 { color: #fff; font-size: var(--fs-h1); margin-bottom: var(--space-4); }
+  .cta-band p { color: rgba(255,255,255,0.82); font-size: var(--fs-body-l); margin-bottom: var(--space-8); max-width: 60ch; margin-left: auto; margin-right: auto; }
+
+  /* ============================================================ FAQ */
+  .faq-list { max-width: 760px; margin: 0 auto; display: grid; gap: 12px; }
+  details.faq { border: var(--border-hairline); border-radius: var(--radius-md); background: var(--color-bg); overflow: hidden; transition: border-color .2s; }
+  details.faq[open] { border-color: #cfcabf; }
+  details.faq summary {
+    list-style: none; cursor: pointer; padding: 22px 24px; display: flex; align-items: center;
+    justify-content: space-between; gap: 18px; font-size: var(--fs-h4); text-transform: capitalize;
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary:focus-visible { outline: 3px solid var(--color-accent); outline-offset: -3px; border-radius: var(--radius-md); }
+  details.faq .chev { width: 22px; height: 22px; flex-shrink: 0; color: var(--color-accent); transition: transform .3s var(--ease); }
+  details.faq[open] .chev { transform: rotate(180deg); }
+  details.faq .ans { padding: 0 24px 24px; color: var(--color-text-2); max-width: 64ch; }
+
+  /* ============================================================ FOOTER */
+  footer.site { border-top: var(--border-hairline); padding: 72px 0 40px; }
+  .foot-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+  .foot-brand .lead { max-width: 36ch; margin: 18px 0 0; font-size: var(--fs-body); }
+  .foot-col h4 { font-size: var(--fs-label); letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: var(--space-4); font-weight: var(--fw-medium); }
+  .foot-col a { display: block; color: var(--color-text-2); font-size: var(--fs-small); padding: 7px 0; transition: color .2s; }
+  .foot-col a:hover { color: var(--color-accent); }
+  .foot-bottom { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding-top: 28px; border-top: var(--border-hairline); }
+  .foot-bottom span { font-size: var(--fs-small); color: var(--color-text-muted); }
+
+  /* ============================================================ REVEAL */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ============================================================ RESPONSIVE */
+  @media (max-width: 940px) {
+    :root { --fs-display: 2.75rem; --fs-h1: 2.125rem; --fs-h2: 1.75rem; }
+    .hero-grid, .founder-grid { grid-template-columns: 1fr; gap: 44px; }
+    .founder-photo { max-width: 360px; }
+    .results-grid, .svc-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .menu-btn { display: grid; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 64px 0; }
+    .hero { padding: 56px 0 64px; }
+    .step { grid-template-columns: 1fr; gap: 10px; }
+    .foot-grid { grid-template-columns: 1fr; gap: 32px; }
+    .hero-cta { gap: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; scroll-behavior: auto !important; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site" id="header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="Allum Strategies home">
+      <svg class="mark" viewBox="0 0 48 48" role="img" aria-label="Allum">
+        <rect width="48" height="48" rx="13" fill="#03324f"/>
+        <circle cx="24" cy="11.5" r="2.8" fill="#ffffff"/>
+        <path d="M13 36 L24 15 L35 36" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18.4 28 H29.6" stroke="#9FC4E0" stroke-width="3.4" stroke-linecap="round"/>
+      </svg>
+      <span class="wm">Allum</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="insights.html">Insights</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <a href="[CAL_LINK]" class="btn btn-primary btn-sm">Book a call</a>
+      <button class="menu-btn" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <span class="eyebrow">SEO for service businesses</span>
+      <h1>We Get Your Business On The Front Page Of Google. You Don't Pay Until We Do.</h1>
+      <p class="support">Get found by customers who have never heard your name.</p>
+      <p class="subtext">Most local service companies live and die on referrals. We build the search visibility that brings in new customers who were never referred, the ones already searching for what you do.</p>
+      <div class="hero-cta">
+        <a href="[CAL_LINK]" class="btn btn-primary">
+          Book a call
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <span class="note">Free, no pitch. We confirm whether your business qualifies.</span>
+      </div>
+    </div>
+
+    <!-- Calm ranking visual, brand colors only -->
+    <div class="rank-visual reveal" aria-hidden="true">
+      <div class="rv-head">
+        <span class="t">Google results</span>
+        <span class="q">"service near me"</span>
+      </div>
+      <ul class="serp">
+        <li class="you">
+          <span class="pos">1</span>
+          <span class="bars"><span></span><span class="short"></span></span>
+          <span class="tag">You</span>
+        </li>
+        <li><span class="pos">2</span><span class="bars"><span></span><span class="short"></span></span></li>
+        <li><span class="pos">3</span><span class="bars"><span></span><span class="short"></span></span></li>
+        <li><span class="pos">4</span><span class="bars"><span></span><span class="short"></span></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESULTS ================= -->
+<section style="background: var(--color-surface);">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Proof</span>
+      <h2>Results, Not Promises</h2>
+      <p class="lead">The work speaks for itself. Here is what changed after we went to work.</p>
+    </div>
+    <div class="results-grid">
+      <article class="result-card reveal">
+        <div class="who">AutoShop</div>
+        <div class="metric"><span class="ph">[e.g. Page 3 to #1]</span></div>
+        <p class="muted">for [target keyword]</p>
+        <p class="secondary">[e.g. +X calls/mo] or [+X% organic traffic]</p>
+        <p class="label">[Auto shop name], [city]</p>
+      </article>
+      <article class="result-card reveal">
+        <div class="who">Financial Planner</div>
+        <div class="metric"><span class="ph">[e.g. 0 to X new clients/mo from Google]</span></div>
+        <p class="muted">&nbsp;</p>
+        <p class="secondary">[e.g. front page for X local terms]</p>
+        <p class="label">[Firm name], [city]</p>
+      </article>
+      <article class="result-card reveal">
+        <div class="who">Tech Company</div>
+        <div class="metric"><span class="ph">[e.g. +X% organic traffic in X months]</span></div>
+        <p class="muted">&nbsp;</p>
+        <p class="secondary">[e.g. ranking + new site live]</p>
+        <p class="label">[Company name], [city]</p>
+      </article>
+    </div>
+    <div class="trust-row reveal">
+      <span class="tm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Front-page guarantee</span>
+      <span class="tm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg>Built on WordPress, fast and clean</span>
+      <span class="tm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>Ongoing support, not a handoff</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW THE GUARANTEE WORKS ================= -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The offer</span>
+      <h2>How The Guarantee Works</h2>
+      <p class="lead">The deal is simple. We get you on the front page of Google, and you don't pay until we do.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="num">01</span>
+        <div>
+          <h3>We Audit Your Business First</h3>
+          <p>Before any work starts, we audit your market, your competition, and your current visibility. That tells us exactly what it takes to get you to the front page, and we define the terms of your guarantee from what we find.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <span class="num">02</span>
+        <div>
+          <h3>We Build The Visibility</h3>
+          <p>SEO, your Google Business Profile, your site structure, and the signals search engines and AI tools use to decide who to show. We define the exact terms of your guarantee up front so you know what winning looks like.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <span class="num">03</span>
+        <div>
+          <h3>You Reach The Front Page</h3>
+          <p>You start paying once you are there. Until then, the risk is ours, not yours.</p>
+        </div>
+      </div>
+    </div>
+    <div class="steps-cta reveal">
+      <span class="q">See if your business qualifies.</span>
+      <a href="[CAL_LINK]" class="btn btn-primary">Book a call</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section style="background: var(--color-surface);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Services</span>
+      <h2>What We Do</h2>
+      <p class="lead">SEO is the core. Everything else exists to support it.</p>
+    </div>
+    <div class="svc-grid">
+      <a class="svc-card reveal" href="services.html#seo">
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>
+        <h3>Local And Organic SEO</h3>
+        <p>We build the structure behind getting found: service pages, internal linking, page hierarchy, and the local and topical signals that tell Google and AI tools what you do and who you serve.</p>
+        <div class="foot">
+          <span class="price">From $1,200/mo</span>
+          <span class="arrow-link">View<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a class="svc-card reveal" href="services.html#gbp">
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <h3>Google Business Profile</h3>
+        <p>We treat your profile like a revenue asset, not a side listing. We tighten it, fix weak signals, and make it build trust instead of quietly costing you customers.</p>
+        <div class="foot">
+          <span class="price">From $750/mo<small>also included in SEO tiers</small></span>
+          <span class="arrow-link">View<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a class="svc-card reveal" href="services.html#geo">
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><circle cx="19" cy="5" r="2"/></svg></span>
+        <h3>AI And LLM Search Visibility</h3>
+        <p>Buyers compare options in ChatGPT, Perplexity, and Google's AI results before they ever reach a contact form. We make your business easy to read, compare, and surface in that layer.</p>
+        <div class="foot">
+          <span class="price">From $4,800/mo</span>
+          <span class="arrow-link">View<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a class="svc-card reveal" href="services.html#websites">
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></span>
+        <h3>Custom Websites</h3>
+        <p>When the site is the bottleneck, we build one that loads fast, explains your offer, and supports your rankings. WordPress and Bricks, no bloat.</p>
+        <div class="foot">
+          <span class="price">From $2,000</span>
+          <span class="arrow-link">View<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MEET THE FOUNDER ================= -->
+<section>
+  <div class="wrap">
+    <div class="founder-grid">
+      <div class="founder-photo reveal" role="img" aria-label="Photo of Jacob Allumbaugh, founder of Allum Strategies">
+        <span class="ph">[Photo of Jacob]</span>
+      </div>
+      <div class="founder-body reveal">
+        <span class="eyebrow">The founder</span>
+        <h2 style="font-size: var(--fs-h2); margin-bottom: var(--space-6);">Meet The Founder</h2>
+        <p>I'm Jacob Allumbaugh. I started Allum after watching a good company fall apart, not because the work was bad, but because the owner never learned how to bring in new business. The skill was there. The customers couldn't find it.</p>
+        <p>That is the problem I fix. Most service businesses are good at the job and invisible online. I build the search visibility that gets them found, trusted, and contacted by people who were never referred.</p>
+        <p>I don't churn out template sites or hand you a report and disappear. I stay involved after launch, because rankings and results are something you maintain, not something you buy once.</p>
+        <blockquote class="pull">"My mission is to help people who are good at what they do make more money."</blockquote>
+        <a href="[CAL_LINK]" class="btn btn-primary">Book a call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA (accent band) ================= -->
+<section class="cta-band">
+  <div class="wrap">
+    <div class="inner reveal">
+      <span class="eyebrow">Get started</span>
+      <h2>Find Out If You Qualify</h2>
+      <p>If your business is strong but hard to find, the front page is the fastest way to grow. Book a call and we'll tell you straight whether the guarantee fits.</p>
+      <a href="[CAL_LINK]" class="btn btn-on-accent">
+        Book a call
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section style="background: var(--color-surface);">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Questions</span>
+      <h2>FAQ</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq" open>
+        <summary>How Does "Don't Pay Until You Rank" Work?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <div class="ans">You don't pay your monthly fee until you reach the front page for the terms we agree on. A one-time onboarding fee covers the upfront build, and we go over it on the call. We set the ranking terms with you before any work starts, so there is no moving goalpost. Until you rank, the ongoing risk sits with us.</div>
+      </details>
+      <details class="faq">
+        <summary>How Long Until I Rank?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <div class="ans">It depends on your market and competition. Some businesses move in weeks, competitive ones take longer. We give you an honest timeline on the call, based on your situation, not a generic promise.</div>
+      </details>
+      <details class="faq">
+        <summary>Do You Build Websites Too?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <div class="ans">Yes. SEO is the focus, but when your site is holding back results we build a fast, clean one that supports your rankings instead of fighting them.</div>
+      </details>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html" aria-label="Allum Strategies home">
+          <svg class="mark" viewBox="0 0 48 48" role="img" aria-label="Allum">
+            <rect width="48" height="48" rx="13" fill="#03324f"/>
+            <circle cx="24" cy="11.5" r="2.8" fill="#ffffff"/>
+            <path d="M13 36 L24 15 L35 36" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18.4 28 H29.6" stroke="#9FC4E0" stroke-width="3.4" stroke-linecap="round"/>
+          </svg>
+          <span class="wm">Allum</span>
+        </a>
+        <p class="lead">We get service businesses on the front page of Google. You don't pay until you rank.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="insights.html">Insights</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Allum Strategies. All rights reserved.</span>
+      <span>Front-page SEO for service businesses, US-wide.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= JSON-LD ================= -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Allum Strategies",
+  "url": "https://allumstrategies.com/",
+  "logo": "https://allumstrategies.com/allum-logo.svg",
+  "description": "Allum gets service businesses on the front page of Google. You don't pay until you rank. SEO, Google Business Profile, AI search, and websites.",
+  "founder": { "@type": "Person", "name": "Jacob Allumbaugh" },
+  "sameAs": ["[LINKEDIN_URL]", "[X_URL]"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Allum Strategies",
+  "url": "https://allumstrategies.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://allumstrategies.com/?s={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does \"don't pay until you rank\" work?",
+      "acceptedAnswer": { "@type": "Answer", "text": "You don't pay your monthly fee until you reach the front page for the terms we agree on. A one-time onboarding fee covers the upfront build, and we go over it on the call. We set the ranking terms with you before any work starts, so there is no moving goalpost. Until you rank, the ongoing risk sits with us." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long until I rank?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It depends on your market and competition. Some businesses move in weeks, competitive ones take longer. We give you an honest timeline on the call, based on your situation, not a generic promise." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you build websites too?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. SEO is the focus, but when your site is holding back results we build a fast, clean one that supports your rankings instead of fighting them." }
+    }
+  ]
+}
+</script>
+
+<script>
+  // Sticky header hairline on scroll
+  var header = document.getElementById('header');
+  window.addEventListener('scroll', function () {
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+
+  // Scroll reveal
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+</script>
+</body>
+</html>
